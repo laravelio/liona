@@ -32,6 +32,7 @@ triggers =
   '!drama'        : "I just can't take it anymore...."
   '!41update'     : "If you're updating from 4.0.x to Laravel 4.1, make sure you follow the steps in https://github.com/laravel/laravel/blob/develop/upgrade.md to avoid common issues. This is due to necessary changes to the Laravel core to make things more awesome."
   '!tableflip'    : "(╯°□°)╯︵ ┻━┻"
+  '!tableflippin' : "http://i.imgur.com/xBQOzc4.gif"
   '!testing'      : "lolnope"
 
 module.exports = (robot) ->
