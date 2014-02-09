@@ -13,9 +13,8 @@ module.exports = (robot) ->
 			})
 			.get() (err, res, body) ->
 				results = JSON.parse(body).responseData.results
-
-				unless results?
+				if results[0]?
+					msg.send results[0].url
+				else 
 					msg.send "No results for \"#{query}\""
-					return
 
-				msg.send result[0].url
