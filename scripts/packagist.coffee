@@ -10,12 +10,10 @@ module.exports = (robot) ->
 			.query({q: query})
 			.get() (err, res, body) ->
 				results = JSON.parse(body).results
+				if results[0]?
+					result = results[0]
+					resultstring = result.name + ' - ' + result.url + ' (' + result.downloads + ' downloads)'
 
-				unless results?
+					msg.send resultstring
+				else
 					msg.send "No results for \"#{query}\""
-					return
-
-				result = results[0]
-				resultstring = result.name + ' - ' + result.url + ' (' + result.downloads + ' downloads)'
-
-				msg.send resultstring
