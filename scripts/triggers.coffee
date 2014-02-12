@@ -14,6 +14,7 @@ triggers =
   '!helpme'       : "Before asking for help, use http://help.laravel.io to provide us the information we need to help you - Laravel version, expected/actual behavior, and all relevant code. Paste the link here when done. Thanks!"
   '!paste'        : "You may paste your code at http://laravel.io/bin"
   '!pb'           : "Please avoid using pastebin.com as it is slow and forces others to look at ads.  Please use http://laravel.io/bin.  Thanks!"
+  '!rules'        : "You may review our room rules at http://goo.gl/Tl77U2"
 
   # Helpers
   '!ugt'          : "It is always morning when someone comes into a channel. We call that Universal Greeting Time http://www.total-knowledge.com/~ilya/mips/ugt.html"
