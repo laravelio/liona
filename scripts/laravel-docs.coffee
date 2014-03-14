@@ -26,7 +26,7 @@ module.exports = (robot) ->
     if version.match(/^3(.*)/i)
       query = "site:three.laravel.com/docs #{query}"    
     else if version == 'api'
-      query = "site:laravel.com/api #{query}"
+      query = "site:laravel.com/api/4.1 #{query}"
     else if version?
       query = "site:laravel.com/docs/#{version} #{query}"
     else 
