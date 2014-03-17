@@ -8,7 +8,11 @@
 PROD_MODE        = process.env.NODE_ENV is 'production'
 POLL_INTERVAL    = 1000 * 60 * 10 # 10 minute interval to start with
 POLL_INTERVAL_ID = null
-ANNOUNCE_ROOMS   = process.env.HUBOT_IRC_ROOMS.split ','
+ANNOUNCE_ROOMS   = []
+
+do =>
+  rooms = process.env.FORUM_POLL_ANNOUNCE_ROOMS || process.env.HUBOT_IRC_ROOMS
+  ANNOUNCE_ROOMS = rooms.split ','
 
 class ThreadPoster
   constructor: (@robot) ->
