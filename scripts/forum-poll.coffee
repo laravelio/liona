@@ -31,13 +31,12 @@ class ForumPoller
   constructor: (@robot) ->
 
   getNewThreads: (callback) ->
-    LAST_POLLED_AT = new Date()
     @robot.http(HOST_URL+API_URI).query(take: 3).get() (err, res, body) =>
       try
         threads = JSON.parse(body)
         result = threads.filter (thread) => @isMoreRecentThanLastPoll(thread.updated_at)
 
-
+        LAST_POLLED_AT = new Date()
         # need to set last polled date/time
       catch error
         console.log "Parsing error when fetching feeds from forum", error
