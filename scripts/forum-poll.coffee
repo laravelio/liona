@@ -8,7 +8,11 @@
 PROD_MODE        = process.env.NODE_ENV is 'production'
 POLL_INTERVAL    = 1000 * 60 * 10 # 10 minute interval to start with
 POLL_INTERVAL_ID = null
-ANNOUNCE_ROOMS   = process.env.HUBOT_IRC_ROOMS.split ','
+ANNOUNCE_ROOMS   = []
+
+do =>
+  rooms = process.env.FORUM_POLL_ANNOUNCE_ROOMS || process.env.HUBOT_IRC_ROOMS
+  ANNOUNCE_ROOMS = rooms.split ','
 
 class ThreadPoster
   constructor: (@robot) ->
@@ -31,13 +35,12 @@ class ForumPoller
   constructor: (@robot) ->
 
   getNewThreads: (callback) ->
-    LAST_POLLED_AT = new Date()
     @robot.http(HOST_URL+API_URI).query(take: 3).get() (err, res, body) =>
       try
         threads = JSON.parse(body)
         result = threads.filter (thread) => @isMoreRecentThanLastPoll(thread.updated_at)
 
-
+        LAST_POLLED_AT = new Date()
         # need to set last polled date/time
       catch error
         console.log "Parsing error when fetching feeds from forum", error
