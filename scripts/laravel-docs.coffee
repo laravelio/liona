@@ -10,9 +10,10 @@
 #   None
 
 module.exports = (robot) ->
-  robot.hear /!docs\s?([0-9.]+|api|dev)? (.*)/i, (msg) ->
-    version = msg.match[1].trim()
-    query = msg.match[2].trim()
+  robot.hear /(\w+)?(?:[\:\s]+)?!docs\s?([0-9.]+|api|dev)? (.*)/i, (msg) ->
+    user = msg.match[1].trim()
+    version = msg.match[2].trim()
+    query = msg.match[3].trim()
  
     # quick and dirty urlify version string
     # (beware if we get into 2 digit minor vers)
@@ -40,6 +41,9 @@ module.exports = (robot) ->
       .get() (err, res, body) ->
         results = JSON.parse(body).responseData.results
         if results[0]?
-          msg.send results[0].url
+          if user
+            msg.send "#{user}: " + results[0].url
+          else
+            msg.send results[0].url
         else 
           msg.send "No results for \"#{query}\""
