@@ -48,7 +48,7 @@ module.exports = (robot) ->
       else
         msg.reply triggerPhrase
 
-  robot.hear /(\w+)(?:\:?)?(?:\s+?)(!.+)/, (msg) ->
+  robot.hear /(\w+)(?:\:?)?(?:\s+?)(!\w+)/, (msg) ->
     user          = msg.match[1]
     trigger       = msg.match[2]
     triggerPhrase = triggers[trigger]
