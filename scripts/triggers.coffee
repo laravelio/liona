@@ -37,9 +37,10 @@ triggers =
   '!testing'      : "lolnope"
 
 module.exports = (robot) ->
-  robot.hear /(!\w+)(?:\s+)?(\w+)?/, (msg) ->
-    trigger       = msg.match[1]
+  robot.hear /(([a-z-_`\\\[\]]+)[\:\s]+)?(!\w+)(.*)/, (msg) ->
     user          = msg.match[2]
+    trigger       = msg.match[3]
+    args          = msg.match[4]
     triggerPhrase = triggers[trigger]
 
     if triggerPhrase
@@ -47,11 +48,3 @@ module.exports = (robot) ->
         msg.send "#{user}: #{triggerPhrase}"
       else
         msg.reply triggerPhrase
-
-  robot.hear /(\w+)(?:\:?)?(?:\s+?)(!\w+)/, (msg) ->
-    user          = msg.match[1]
-    trigger       = msg.match[2]
-    triggerPhrase = triggers[trigger]
-
-    if triggerPhrase
-      msg.send "#{user}: #{triggerPhrase}"
