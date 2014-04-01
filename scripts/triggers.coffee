@@ -37,7 +37,7 @@ triggers =
   '!testing'      : "lolnope"
 
 module.exports = (robot) ->
-  robot.hear /(([a-z-_`\\\[\]]+)[\:\s]+)?(!\w+)(.*)/i, (msg) ->
+  robot.hear /(([^:\s!]+)[:\s]+)?(!\w+)(.*)/i, (msg) ->
     user          = msg.match[2]
     trigger       = msg.match[3]
     args          = msg.match[4]
