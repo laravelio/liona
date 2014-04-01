@@ -10,6 +10,7 @@
 triggers =
   # Question Assistance
   '!dataja'       : "Don't ask to ask, Just ask!"
+  '!tryit'        : "Try it and see™. You learn much more by experimentation than by asking without having even tried."
   '!help'         : "Before asking for help, use http://help.laravel.io to provide us the information we need to help you - Laravel version, expected/actual behavior, and all relevant code. Paste the link here when done. Thanks!"
   '!helpme'       : "Before asking for help, use http://help.laravel.io to provide us the information we need to help you - Laravel version, expected/actual behavior, and all relevant code. Paste the link here when done. Thanks!"
   '!paste'        : "You may paste your code at http://laravel.io/bin"
