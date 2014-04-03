@@ -54,7 +54,7 @@ class NoticeCreator
   MESSAGE_FORMAT = "Forum Activity: :subject :url"
 
   truncate: (msg, length = 40) ->
-    msg.substring(0, length) + '...'
+    if msg.length > length then msg.substring(0, length) + '...' else msg
 
   create: (thread) ->
     message = MESSAGE_FORMAT
