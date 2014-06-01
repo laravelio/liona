@@ -24,7 +24,9 @@
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
     "hubot-irc": "~0.1.24",
     "hubot-calculator": ">= 0.2.0",
-    "rsvp": "3.0.6"
+    "rsvp": "3.0.6",
+    "cheerio": "0.16.0",
+    "htmlstrip-native": "0.0.2"
   },
   "engines": {
     "node": ">= 0.8.x",
