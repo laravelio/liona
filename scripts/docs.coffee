@@ -53,7 +53,7 @@ module.exports = (robot) ->
           robot.http(url).get() (err, res, body) ->
             $ = cheerio.load body
             methodSigContent = htmlStrip.html_strip $('.methodsynopsis').html(), compact_whitespace : true
-            msg.send "Url: #{url} | Method Signature: #{methodSigContent}"
+            msg.send "#{url} | #{methodSigContent}"
 
       else
         msg.send url || "No results for \"#{query}\""
