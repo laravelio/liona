@@ -33,9 +33,10 @@ module.exports = (robot) ->
       url = results[0] and results[0].url
       callback(url) if callback
 
-  robot.hear /!docs\s?([0-9.]+|api|dev|php)? (.*)/i, (msg) ->
-    version = msg.match[1] && msg.match[1].trim()
-    query = msg.match[2].trim()
+  robot.hear /(([^:,\s!]+)[:,\s]+)?!docs\s([0-9.]+|api|dev|php)?\s?(.*)/i, (msg) ->
+    user = msg.match[2]
+    version = msg.match[3]
+    query = msg.match[4]
 
     # quick and dirty urlify version string
     # (beware if we get into 2 digit minor vers)
@@ -49,12 +50,17 @@ module.exports = (robot) ->
         version = ''
 
     fetchResult getQueryUrl(version, query), (url) ->
+      response = "#{url}"
+      if user
+        response = "#{user}: " + response
+
       if version == 'php' and /function/.test url
           robot.http(url).get() (err, res, body) ->
             $ = cheerio.load body
             methodSigContent = htmlStrip.html_strip $('.methodsynopsis').html(), compact_whitespace : true
-            msg.send "#{url} | #{methodSigContent}"
-
+            msg.send response + " | #{methodSigContent}"
       else
-        msg.send url || "No results for \"#{query}\""
-
+        if !url
+          msg.send "No results for \"#{query}\""
+        else
+          msg.send response
