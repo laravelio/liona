@@ -50,9 +50,9 @@ module.exports = (robot) ->
         version = ''
 
     fetchResult getQueryUrl(version, query), (url) ->
-      response = "#{url}"
+      response = url
       if user
-        response = "#{user}: " + response
+        response = user + ": " + response
 
       if version == 'php' and /function/.test url
           robot.http(url).get() (err, res, body) ->
