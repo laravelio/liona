@@ -11,8 +11,11 @@
 #   None
 
 cheerio   = require 'cheerio'
-htmlStrip = require('htmlstrip-native');
-API_URL   = 'http://ajax.googleapis.com/ajax/services/search/web'
+htmlStrip = require 'htmlstrip-native'
+
+SEARCH_URL = 'https://www.google.com/search'
+# this gets the correct page structure, needs to be slimmed down
+USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/34.0.1847.116 Chrome/34.0.1847.116 Safari/537.36'
 
 module.exports = (robot) ->
   getQueryUrl = (version, query) ->
@@ -21,18 +24,27 @@ module.exports = (robot) ->
     else if version == 'api'
       "site:laravel.com/api/4.1 #{query}"
     else if version == 'php'
-        "site:www.php.net/manual/en #{query}"
+      "site:www.php.net/manual/en #{query}"
     else if version?
       "site:laravel.com/docs/#{version} #{query}"
     else
       "site:laravel.com/docs #{query}"
 
   fetchResult = (query, callback) ->
-    robot.http(API_URL).query(v: '1.0', q: query).get() (err, res, body) ->
-      results = JSON.parse(body).responseData.results
-      url = results[0] and results[0].url
-      callback(url) if callback
+    robot.http(SEARCH_URL)
+      .header('User-Agent', USER_AGENT)
+      .query(q: query)
+      .get() (err, res, body) ->
+        $ = cheerio.load body
+        firstresult = $('li.g').first()
+        url = firstresult.find('h3.r a').attr('href')
+        jumpto = firstresult.find('.st .f a').attr('href')
 
+        if jumpto?
+          url = jumpto
+        callback url if callback
+  
+  # this regex works fine, would like to fix the space after version though
   robot.hear /(([^:,\s!]+)[:,\s]+)?!docs\s([0-9.]+|api|dev|php)?\s?(.*)/i, (msg) ->
     user = msg.match[2]
     version = msg.match[3]
@@ -55,10 +67,10 @@ module.exports = (robot) ->
         response = user + ": " + response
 
       if version == 'php' and /function/.test url
-          robot.http(url).get() (err, res, body) ->
-            $ = cheerio.load body
-            methodSigContent = htmlStrip.html_strip $('.methodsynopsis').html(), compact_whitespace : true
-            msg.send response + " | #{methodSigContent}"
+        robot.http(url).get() (err, res, body) ->
+          $ = cheerio.load body
+          methodSigContent = htmlStrip.html_strip $('.methodsynopsis').html(), compact_whitespace : true
+          msg.send response + " | #{methodSigContent}"
       else
         if !url
           msg.send "No results for \"#{query}\""
