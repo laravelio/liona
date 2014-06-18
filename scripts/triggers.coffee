@@ -36,6 +36,7 @@ triggers =
   '!tableflip'    : "(╯°□°)╯︵ ┻━┻"
   '!tableflippin' : "http://i.imgur.com/xBQOzc4.gif"
   '!testing'      : "lolnope"
+  '!goal'         : "GOOOOOOOOOOOOOOOOOOOOOOAAAAAAAAAAAAAAAAALLLLLLLLLL!!!!!!!"
 
 module.exports = (robot) ->
   robot.hear /(([^:\s!]+)[:\s]+)?(!\w+)(.*)/i, (msg) ->
