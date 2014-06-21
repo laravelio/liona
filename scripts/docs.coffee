@@ -22,6 +22,8 @@ module.exports = (robot) ->
     if version.match(/^3(.*)/i)
       "site:three.laravel.com/docs #{query}"
     else if version == 'api'
+      "site:laravel.com/api/4.2 #{query}"
+    else if version == 'api41'
       "site:laravel.com/api/4.1 #{query}"
     else if version == 'php'
       "site:www.php.net/manual/en #{query}"
@@ -39,14 +41,14 @@ module.exports = (robot) ->
         url = result.find('.st .f a').attr('href') ? result.find('h3.r a').attr('href')
         callback url if callback
 
-  robot.hear /(([^:,\s!]+)[:,\s]+)?!docs\s?([0-9.]+|api|dev|php)?\s(.*)/i, (msg) ->
+  robot.hear /(([^:,\s!]+)[:,\s]+)?!docs\s?([0-9.]+|api|api41|dev|php)?\s(.*)/i, (msg) ->
     user = msg.match[2]
     version = msg.match[3]
     query = msg.match[4]
 
     # quick and dirty urlify version string
     # (beware if we get into 2 digit minor vers)
-    if (version != 'dev' or version != 'api')
+    if (version != 'dev' and version != 'api' and version != 'api41')
       if !version?
         version = ''
       else if version.length > 1
