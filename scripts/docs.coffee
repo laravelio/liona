@@ -24,7 +24,7 @@ module.exports = (robot) ->
     else if version == 'api'
       "site:laravel.com/api/4.1 #{query}"
     else if version == 'php'
-      "site:www.php.net/manual/en #{query}"
+      "site:php.net/manual/en #{query}"
     else
       "site:laravel.com/docs #{query}"
 
