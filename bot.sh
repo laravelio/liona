@@ -10,4 +10,4 @@ export HUBOT_IRC_SERVER="irc.freenode.net"
 
 # Start hubot in the background
 cd /opt/octobot/
-bin/hubot -a irc -n Octobott
+bin/hubot -a irc -n Octobot\`
