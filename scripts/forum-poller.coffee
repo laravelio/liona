@@ -45,7 +45,7 @@ class ForumPoller
   threadIsNew: (thread) ->
     return false unless @recentIds.indexOf(thread.id) is -1
 
-    @recentIds.shift() if @recentIds.length is 3
+    @recentIds.shift() if @recentIds.length is 20
     @recentIds.push(thread.id)
     true
 
