@@ -22,7 +22,7 @@ class ForumPoller
 
   constructor: (@robot, @poster) ->
     @poster  ||= new ThreadPoster(@robot)
-    @poller    = new Poller(@robot.http(HOST_URL+API_URI).query(take: 3), POLL_INTERVAL)
+    @poller    = new Poller(@robot.http(HOST_URL+API_URI).query(limit: 3), POLL_INTERVAL)
     @recentIds = []
 
   pollForNewThreads: ->
@@ -45,7 +45,7 @@ class ForumPoller
   threadIsNew: (thread) ->
     return false unless @recentIds.indexOf(thread.id) is -1
 
-    @recentIds.shift() if @recentIds.length is 20
+    @recentIds.shift() if @recentIds.length is 5
     @recentIds.push(thread.id)
     true
 
