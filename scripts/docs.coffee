@@ -52,7 +52,7 @@ module.exports = (robot) ->
       if doctype == 'php' and /function/.test url
         robot.http(url).get() (err, res, body) ->
           $ = cheerio.load body
-          methodSigContent = $('.methodsynopsis').html().replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>?/gi, '').trim()
+          methodSigContent = $('.methodsynopsis').html().replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>?/gi, '').replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," ").trim()
           msg.send "#{response} | #{methodSigContent}"
       else
           msg.send response
