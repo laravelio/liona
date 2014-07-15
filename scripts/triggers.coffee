@@ -36,7 +36,7 @@ triggers =
   '!drama'        : "I just can't take it anymore...."
   '!41update'     : "If you're updating from 4.0.x to Laravel 4.1, make sure you follow the steps in http://laravel.com/docs/upgrade to avoid common issues. This is due to necessary changes to the Laravel core to make things more awesome."
   '!tableflip'    : "(╯°□°)╯︵ ┻━┻"
-  '!dunno'        : " ¯\_(ツ)_/¯"
+  '!dunno'        : " ¯\\_(ツ)_/¯"
   '!tableflippin' : "http://i.imgur.com/xBQOzc4.gif"
   '!testing'      : "lolnope"
   '!goal'         : "GOOOOOOOOOOOOOOOOOOOOOOAAAAAAAAAAAAAAAAALLLLLLLLLL!!!!!!!"
