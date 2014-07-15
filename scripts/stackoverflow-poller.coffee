@@ -26,7 +26,7 @@ class SOPoller
       site:   "stackoverflow"
       order:  "desc"
       sort:   "activity"
-      tagged: "laravel"
+      tagged: "octobercms"
       filter: "default"
     ), POLL_INTERVAL)
     @recentIds = []

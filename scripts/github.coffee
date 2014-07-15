@@ -2,10 +2,10 @@
 # 	Search github.
 # 
 # Commands:
-# 	hubot github me <query> - searches the laravel/framework github repo and returns a link to the top result.
+# 	hubot github me <query> - searches the octobercms/october github repo and returns a link to the top result.
 module.exports = (robot) ->
 	robot.respond /(gh|github)( me)? (.*)/i, (msg) ->
-		query = 'site:github.com/laravel/framework ' + msg.match[3]
+		query = 'site:github.com/octobercms/october ' + msg.match[3]
 		robot.http('http://ajax.googleapis.com/ajax/services/search/web')
 			.query({
 				v: '1.0'

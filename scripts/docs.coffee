@@ -11,7 +11,6 @@
 #   None
 
 cheerio   = require 'cheerio'
-# htmlStrip = require 'htmlstrip-native'
 
 TARGET_VERSION = '4.2'
 SEARCH_URL = 'https://www.google.com/search'
@@ -22,7 +21,7 @@ module.exports = (robot) ->
   getQueryUrl = (doctype, query) ->
 
     if doctype == 'api'
-      "site:laravel.com/api #{query}"
+      "site:octobercms.com/api #{query}"
     else if doctype == 'php'
       "site:php.net/manual/en #{query}"
     else
@@ -53,8 +52,7 @@ module.exports = (robot) ->
       if doctype == 'php' and /function/.test url
         robot.http(url).get() (err, res, body) ->
           $ = cheerio.load body
-          methodSigContent = $('.methodsynopsis').html()
-#          methodSigContent = htmlStrip.html_strip $('.methodsynopsis').html(), compact_whitespace : true
+          methodSigContent = $('.methodsynopsis').html().replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>?/gi, '').trim()
           msg.send "#{response} | #{methodSigContent}"
       else
           msg.send response

@@ -17,8 +17,8 @@ do =>
 # Polling system
 
 class ForumPoller
-  HOST_URL       = 'http://laravel.io'
-  API_URI        = '/api/forum'
+  HOST_URL       = 'http://octobercms.com'
+  API_URI        = '/forum/api'
 
   constructor: (@robot, @poster) ->
     @poster  ||= new ThreadPoster(@robot)
