@@ -7,7 +7,6 @@
 
 Poller = require '../support/poller'
 
-PROD_MODE        = process.env.NODE_ENV is 'production'
 POLL_INTERVAL    = 1000 * 60 * 10 # 10 minute interval to start with
 ANNOUNCE_ROOMS   = []
 
@@ -18,7 +17,7 @@ do =>
 # Polling system
 
 class ForumPoller
-  HOST_URL       = if PROD_MODE then 'http://laravel.io' else 'http://app.local'
+  HOST_URL       = 'http://laravel.io'
   API_URI        = '/api/forum'
 
   constructor: (@robot, @poster) ->
