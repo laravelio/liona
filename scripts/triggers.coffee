@@ -54,3 +54,5 @@ module.exports = (robot) ->
         msg.send "#{user}: #{triggerPhrase}"
       else
         msg.send triggerPhrase
+    else
+      msg.reply "....ya I got nothing."
