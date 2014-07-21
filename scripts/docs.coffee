@@ -49,10 +49,7 @@ module.exports = (robot) ->
         callback url if callback
 
   docFetcher = (msg) ->
-    user = msg.match[2]
-    doctype = msg.match[3]
-    version  = msg.match[4]
-    query = msg.match[5]
+    [user, doctype, version, query] = msg.match[1..4]
 
     fetchResult getQueryUrl(doctype, version, query), (url) ->
       return msg.send "No results for \"#{query.substr(0,30)}\"" unless url
@@ -68,5 +65,5 @@ module.exports = (robot) ->
       else
         msg.send response
 
-  robot.respond /(([^:,\s!]+)[:,\s]+)?docs\s?(api|php)?\s?([0-9.]+)? (.*)/i, docFetcher
+  robot.respond /show (?:([^\s!]+) )?docs for (?:(api|php) )?(?:([0-9.]+) )?(.*)/i, docFetcher
   robot.hear /(([^:,\s!]+)[:,\s]+)?!docs\s?(api|php)?\s?([0-9.]+)? (.*)/i, docFetcher
