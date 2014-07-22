@@ -65,5 +65,5 @@ module.exports = (robot) ->
       else
         msg.send response
 
-  robot.respond /show (?:([^\s!]+) )?docs for (?:(api|php) )?(?:([0-9.]+) )?(.*)/i, docFetcher
-  robot.hear /(?:([^:,\s!]+)[:,\s]+)?!docs(?: (api|php))?(?: ([0-9.]+))?(?:\s?(.*))/i, docFetcher
+  robot.respond /show (?:([^\s!]+) )?docs for (?:(api|php) )?(?:([0-9.]+) )?(.+)/i, docFetcher
+  robot.hear /(?:([^:,\s!]+)[:,\s]+)?!docs(?: (api|php))?(?: ([0-9.]+))?(?:\s?(.+))/i, docFetcher
