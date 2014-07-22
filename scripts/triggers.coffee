@@ -18,6 +18,7 @@ triggers =
   '!dontspam'     : "Please don't paste your code here. Instead, use http://laravel.io/bin"
   '!pb'           : "Please avoid using pastebin.com as it is slow and forces others to look at ads.  Please use http://laravel.io/bin.  Thanks!"
   '!rules'        : "You may review our room rules at http://goo.gl/Tl77U2"
+  '!docs'         : "The !docs syntax is deprecated, please use `Liona show <user> docs for <topic>`"
 
   # Helpers
   '!ugt'          : "It is always morning when someone comes into a channel. We call that Universal Greeting Time http://www.total-knowledge.com/~ilya/mips/ugt.html"
