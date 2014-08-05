@@ -33,7 +33,7 @@ module.exports = (robot) ->
     rule = msg.match[1] || 'all'
     user = msg.match[2]
 
-    msg.reply "I'm sorry, I couldn't find a rule for #{rule}" if rule and !ruleExists(rule)
+    return msg.reply "I'm sorry, I couldn't find a rule for #{rule}" if rule and !ruleExists(rule)
 
     response = ""
     response += "#{user}: " if user
