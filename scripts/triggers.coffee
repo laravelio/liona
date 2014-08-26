@@ -29,7 +29,6 @@ triggers =
   '!relsched'     : "Here is our release schedule: http://wiki.laravel.io/Laravel_4#Release_Schedule"
   '!massassign'   : "Getting a MassAssignmentException? Find out how to protect your input at: http://wiki.laravel.io/FAQ_(Laravel_4)#MassAssignmentException"
   '!docscontrib'  : "Want to contribute to the documentation? Awesome! Fork and submit a pull request at http://github.com/laravel/docs"
-  '!whoisliobot'  : "Hello! The Laravel.io team created me to help you! You can find my code at https://github.com/laravelio/liobot"
 
   # Fun
   '!no'           : "NOOOOOOOOO! http://www.youtube.com/watch?v=umDr0mPuyQc"
@@ -42,6 +41,12 @@ triggers =
   '!testing'      : "lolnope"
   '!goal'         : "GOOOOOOOOOOOOOOOOOOOOOOAAAAAAAAAAAAAAAAALLLLLLLLLL!!!!!!!"
   '!unstoppable'  : "I am unstoppable!!! http://i.imgur.com/ALHS4Za.png"
+
+# Bot Info
+nick = process.env.HUBOT_IRC_NICK?.toLowerCase() ? "hubot"
+
+triggers["!#{nick}"]      = "Hello! The Laravel.io team created me to help you! You can find my code at https://github.com/laravelio/liobot"
+triggers["!whois#{nick}"] = triggers["!#{nick}"]
 
 module.exports = (robot) ->
   robot.hear /(([^:\s!]+)[:\s]+)?(!\w+)(.*)/i, (msg) ->
