@@ -36,6 +36,7 @@ triggers =
   '!xy'           : "It's difficult to discuss a solution without first understanding the problem. Please, explain the problem itself and not the solution that you have in mind. For more info on presenting your problem see !help. Thanks! Also see http://mywiki.wooledge.org/XyProblem"
   '!drama'        : "I just can't take it anymore...."
   '!41update'     : "If you're updating from 4.0.x to Laravel 4.1, make sure you follow the steps in http://laravel.com/docs/upgrade to avoid common issues. This is due to necessary changes to the Laravel core to make things more awesome."
+  '!43'           : "Laravel 4.3 will be released in November 2014"
   '!tableflip'    : "(╯°□°)╯︵ ┻━┻"
   '!dunno'        : " ¯\\_(ツ)_/¯"
   '!tableflippin' : "http://i.imgur.com/xBQOzc4.gif"
