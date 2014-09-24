@@ -23,7 +23,7 @@ triggers =
   '!pb'           : "Please avoid using pastebin.com as it is slow and forces others to look at ads.  Please use #{pasteUrl}.  Thanks!"
   '!rules'        : "You may review our room rules at http://goo.gl/Tl77U2"
   '!docs'         : "The !docs syntax is deprecated, please use `Liona show <user> docs for <topic>`"
-  '!usedev'       : "Only use the dev version you don't mind potentially needing to change your app on updates if the API or concepts change. Stability is not guaranteed."
+  '!usedev'       : "Only use the dev version if you don't mind potentially needing to change your app on updates if the API or concepts change. Stability is not guaranteed."
 
   # Helpers
   '!ugt'          : "It is always morning when someone comes into a channel. We call that Universal Greeting Time http://www.total-knowledge.com/~ilya/mips/ugt.html"
