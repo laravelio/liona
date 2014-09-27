@@ -21,6 +21,7 @@ USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Ge
 module.exports = (robot) ->
   getQueryUrl = (doctype, version, query) ->
     version = 3 if version?.match /^3(.*)/i
+    version = 'master' if version == '5'
 
     if doctype == 'api'
       if version == 3
@@ -33,7 +34,9 @@ module.exports = (robot) ->
       "site:php.net/manual/en #{query}"
     else
       if version == 3
-        "site:three.laravel.com/docs #{query}"
+        "site:laravel3.veliovgroup.com/docs #{query}"
+      else if version == 'master'
+        "site:laravel.com/docs/#{version} #{query}"
       else
         "site:laravel.com/docs #{query}"
 
