@@ -35,7 +35,7 @@ module.exports = (robot) ->
     else
       if version == 3
         "site:laravel3.veliovgroup.com/docs #{query}"
-      else if version == 'master'
+      else if version?
         "site:laravel.com/docs/#{version} #{query}"
       else
         "site:laravel.com/docs #{query}"
