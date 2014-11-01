@@ -28,7 +28,7 @@ Install CoffeeScript
 Install Octobot
 
     cd /opt
-    git clone gitL://github.com/daftspunk/Octobot.git octobot && cd octobot
+    git clone git://github.com/daftspunk/Octobot.git octobot && cd octobot
     npm install
 
 Export vars
@@ -45,3 +45,23 @@ Run
 Take a look at the scripts in the `./scripts` folder for examples.
 Delete any scripts you think are useless or boring.  Add whatever functionality you
 want hubot to have. Read up on what you can do with hubot in the [Scripting Guide](https://github.com/github/hubot/blob/master/docs/scripting.md).
+
+### Screening
+
+Check if screen is up
+
+```
+screen -r
+```
+
+Open new screen
+
+```
+screen
+
+```
+
+Detach from screen
+```
+Ctrl+A, D
+```
