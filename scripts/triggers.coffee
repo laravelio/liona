@@ -41,6 +41,7 @@ triggers =
   '!testing'      : "lolnope"
   '!goal'         : "GOOOOOOOOOOOOOOOOOOOOOOAAAAAAAAAAAAAAAAALLLLLLLLLL!!!!!!!"
   '!unstoppable'  : "I am unstoppable!!! http://i.imgur.com/ALHS4Za.png"
+  '!magic'        : "http://www.reactiongifs.com/r/mgc.gif"
 
 module.exports = (robot) ->
   robot.hear /(([^:\s!]+)[:\s]+)?(!\w+)(.*)/i, (msg) ->
