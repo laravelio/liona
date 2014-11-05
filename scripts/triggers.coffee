@@ -41,7 +41,7 @@ triggers =
   '!drama'        : "I just can't take it anymore...."
   '!41update'     : "If you're updating from 4.0.x to Laravel 4.1, make sure you follow the steps in http://laravel.com/docs/upgrade to avoid common issues. This is due to necessary changes to the Laravel core to make things more awesome."
   '!43'           : "Laravel 4.3 has been bumped to 5.0 and will be released in November 2014"
-  '!5'            : "Laravel 5.0 will be released in November 2014"
+  '!5'            : "Laravel 5.0 is expected to be released in late November or December, 2014"
   '!ghissues'     : "Laravel's GitHub issues are closed. Please see #laravel-dev or check out ways you can report a bug at http://laravel.com/docs/contributions#bugs"
   '!liferaft'     : "Liferaft is a Laravel CLI application to help users send pull requests to report bugs, and help developers efficiently retrieve and resolve bugs. Read more at http://laravel.com/docs/contributions#creating-liferaft-applications"
   '!tableflip'    : "(╯°□°)╯︵ ┻━┻"
