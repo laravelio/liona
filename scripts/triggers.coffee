@@ -7,7 +7,7 @@
 # Notes:
 #   Add helpful triggers when you think of them!
 
-pasteUrl = "http://laravel.io/bin or https://gist.github.com"
+pasteUrl = "http://laravel.io/bin, https://gist.github.com, or http://kopy.io"
 helpUrl  = "http://help.laravel.io"
 
 triggers =
