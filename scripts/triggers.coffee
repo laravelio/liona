@@ -27,6 +27,7 @@ triggers =
   '!usedev'       : "L5 (dev) is in active development. Expect API changes, potential bugs, and undocumented features. Many packages are not compatible. Be ready to dive into the source, debug and report problems. Otherwise, consider waiting for a stable release."
   '!43'           : "Laravel 4.3 has been bumped to 5.0 and is expected to be released in January."
   '!5'            : "Laravel 5.0 is expected to be released in January."
+  '!shouldiuse5'  : "L5 is in active development. Expect API changes, potential bugs, and undocumented features. Many packages are not compatible. Be ready to dive into the source, debug and report problems. Otherwise, consider waiting for a stable release."
   '!xy'           : "It's difficult to discuss a solution without first understanding the problem. Please, explain the problem itself and not the solution that you have in mind. For more info on presenting your problem see !help. Thanks! Also see http://mywiki.wooledge.org/XyProblem"
 
   # Helpers
