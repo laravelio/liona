@@ -48,6 +48,7 @@ triggers =
   '!tableflippin' : "http://i.imgur.com/xBQOzc4.gif"
   '!goal'         : "GOOOOOOOOOOOOOOOOOOOOOOAAAAAAAAAAAAAAAAALLLLLLLLLL!!!!!!!"
   '!unstoppable'  : "I am unstoppable!!! http://i.imgur.com/ALHS4Za.png"
+  '!haha'         : "http://i.imgur.com/CVhoCwr.jpg"
 
 # Bot Info
 nick = process.env.HUBOT_IRC_NICK?.toLowerCase() ? "hubot"
