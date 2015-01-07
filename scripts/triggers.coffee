@@ -28,7 +28,7 @@ triggers =
   '!43'           : "Laravel 4.3 has been bumped to 5.0 and is expected to be released in January."
   '!5'            : "Laravel 5.0 is expected to be released in January."
   '!xy'           : "It's difficult to discuss a solution without first understanding the problem. Please, explain the problem itself and not the solution that you have in mind. For more info on presenting your problem see !help. Thanks! Also see http://mywiki.wooledge.org/XyProblem"
-  '!dump'         : "Type `composer dump-autoload` into teh command prompt to have composer update your classes."
+  '!dump'         : "Getting 'class not found' errors? Try typing `composer dump-autoload` into the command prompt to have composer update its reference to your classes."
 
   # Helpers
   '!ugt'          : "It is always morning when someone comes into a channel. We call that Universal Greeting Time http://www.total-knowledge.com/~ilya/mips/ugt.html"
