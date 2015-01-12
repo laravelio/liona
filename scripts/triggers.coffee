@@ -15,6 +15,7 @@ triggers =
   '!dataja'       : "Don't ask to ask, Just ask!"
   '!nopros'       : "Please don't ask around for pros on something, just present your question to the room according to our guidelines and someone will help you if they can or send you on the right path."
   '!tryit'        : "Please make sure you've attempted something before asking. You learn much more by experimentation than by asking without having even tried."
+  '!nowork'       : "What do you mean it doesn't work? Is it unemployed? What happens when you try to run it? What's the output? What's the error message? What did you want or expect to happen?"
   '!explain'      : "Explain your business goals, such as what website feature you're making, instead of the technical problem you're facing. We can give you much better answers this way."
   '!help'         : "Before asking for help, please use #{pasteUrl} to provide us the information we need to help you - Laravel version, expected/actual behavior, full error messages, and all relevant code. Paste the link here when done. Thanks!"
   '!paste'        : "You may paste your code at #{pasteUrl}.  Please avoid using pastebin.com - we hate slow load times and ads :)"
