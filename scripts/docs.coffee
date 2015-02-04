@@ -13,7 +13,7 @@
 cheerio   = require 'cheerio'
 htmlStrip = require 'htmlstrip-native'
 
-TARGET_VERSION = '4.2'
+TARGET_VERSION = 'master'
 SEARCH_URL = 'https://www.google.com/search'
 USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36'
 #Rommie=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17
@@ -21,7 +21,7 @@ USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Ge
 module.exports = (robot) ->
   getQueryUrl = (doctype, version, query) ->
     version = 3 if version?.match /^3(.*)/i
-    version = 'master' if version == '5'
+    version = 'master' if version?.match /^5(.*)/i
 
     if doctype == 'api'
       if version == 3
@@ -38,7 +38,7 @@ module.exports = (robot) ->
       else if version?
         "site:laravel.com/docs/#{version} #{query}"
       else
-        "site:laravel.com/docs #{query}"
+        "site:laravel.com/docs/#{TARGET_VERSION} #{query}"
 
   fetchResult = (query, callback) ->
     robot.http(SEARCH_URL)

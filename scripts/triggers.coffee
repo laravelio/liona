@@ -39,6 +39,9 @@ triggers =
   '!contrib'      : "Want to contribute to Laravel? Thanks for being awesome! Fork and submit a pull request at http://github.com/laravel/framework."
   '!docscontrib'  : "Want to contribute to the documentation? Thanks for being awesome! Fork and submit a pull request at http://github.com/laravel/docs"
   '!liferaft'     : "Liferaft is a Laravel CLI application to help users send pull requests to report bugs, and help developers efficiently retrieve and resolve bugs. Read more at http://laravel.com/docs/contributions#creating-liferaft-applications"
+  '!html'         : "Looking for the HTML or Form helpers? They have been removed from the core of Laravel 5. You can still use them via a package. http://laravel.com/docs/5.0/upgrade - Form & HTML Helpers."
+  '!form'         : "Looking for the HTML or Form helpers? They have been removed from the core of Laravel 5. You can still use them via a package. http://laravel.com/docs/5.0/upgrade - Form & HTML Helpers."
+  '!packages'     : "There have been significant changes to package development in Laravel 5 including the removal of workbench. Please refer to the docs http://laravel.com/docs/5.0/packages"
 
   # Fun
   '!no'           : "NOOOOOOOOO! http://www.youtube.com/watch?v=umDr0mPuyQc"
