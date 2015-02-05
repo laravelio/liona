@@ -11,6 +11,6 @@ module.exports = (robot) ->
   robot.respond /you\'re the best/i, (msg) ->
     msg.reply "Awe, you're the best!"
 
-  robot.hear /dammit,? Liona/i, (msg) ->
-    msg.reply "Oh come on! What do you want from me?  I'm written on node!  Ugh, rude."
+  robot.hear /(dammit|damnit|damn it|fucking|fuck you),? Liona/i, (msg) ->
+    msg.reply "Oh come on! What do you want from me?  I run on node!  Ugh, rude."
 
