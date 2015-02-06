@@ -14,3 +14,6 @@ module.exports = (robot) ->
   robot.hear /(dammit|damnit|damn it|fucking|fuck you),? Liona/i, (msg) ->
     msg.reply "Oh come on! What do you want from me?  I run on node!  Ugh, rude."
 
+  reg = new RegExp(", ?#{process.env.HUBOT_IRC_NICK || 'Liona'}\?", 'i')
+  robot.hear reg, (msg) ->
+    msg.reply "I have no idea why you're asking me, I'm a bot."
