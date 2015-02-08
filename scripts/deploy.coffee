@@ -7,7 +7,7 @@
 whitelist = require '../support/whitelist'
 
 deploy = (msg, failMsg = 'Nope') ->
-  if whitelist.canDeploy(msg.message.user)
+  if whitelist.canDeploy(robot, msg.message.user)
     branch = msg.match[1] || 'master'
     msg.reply "Fetching and deploying #{branch}.  Wish me luck!"
     require('child_process').spawn('./bin/deploy.sh', [branch], detached: true).unref()

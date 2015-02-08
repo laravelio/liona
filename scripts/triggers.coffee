@@ -3,6 +3,8 @@
 #
 # Commands:
 #   !<trigger> - Display response to intended user
+#   Liona learn trigger <trigger> <phrase> - Learn a dynamic trigger
+#   Liona forget trigger <trigger> - Forget a dynamic trigger
 #
 # Notes:
 #   Add helpful triggers when you think of them!
@@ -60,11 +62,19 @@ triggers["!whois#{nick}"] = triggers["!#{nick}"]
 
 module.exports = (robot) ->
   robot.respond /learn trigger (\![a-zA-Z-_\&\^\!\#]+) (.*)/, (msg) ->
-    return unless whitelist.canAddTriggers(msg.message.user)
+    return unless whitelist.canAddTriggers(robot, msg.message.user)
     [name, phrase] = msg.match[1..2]
 
     robot.brain.set "trigger:#{name}", phrase
     msg.reply "Got it.  Learned '#{name}' as '#{phrase}'."
+
+  robot.respond /forget trigger (\![a-zA-Z-_\&\^\!\#]+)/, (msg) ->
+    return unless whitelist.canAddTriggers(robot, msg.message.user)
+    name = msg.match[1]
+
+    robot.brain.remove "trigger:#{name}", phrase
+    msg.reply "Poof! And now I know nothing about #{name} unless it's hardcoded"
+
 
   robot.hear /^(([^:\s!]+)[:\s]+)?(!\w+)(.*)/i, (msg) ->
     user          = msg.match[2]
