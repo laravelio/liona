@@ -73,7 +73,7 @@ module.exports = (robot) ->
     name = msg.match[1]
 
     robot.brain.remove "trigger:#{name}", phrase
-    msg.reply "Poof! And now I know nothing about #{name} unless it's hardcoded"
+    msg.reply "Now I know nothing about '#{name}' unless it's hardcoded"
 
 
   robot.hear /^(([^:\s!]+)[:\s]+)?(!\w+)(.*)/i, (msg) ->
