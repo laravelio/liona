@@ -4,12 +4,11 @@
 # Commands:
 #   hubot <3
 
-whitelistedUsers = process.env.HUBOT_ALLOWED_USERS?.split(',') || []
+whitelist = require '../support/whitelist'
 
-isWhitelisted = (user) -> whitelistedUsers.indexOf(user.name) isnt -1
 module.exports = (robot) ->
   robot.respond /say to ([a-zA-Z-_\#]+) (.*)/, (msg) ->
-    if isWhitelisted(msg.message.user)
+    if whitelist.canSay(msg.message.user)
       [room, message] = msg.match[1..2]
       robot.messageRoom room, message
     else
