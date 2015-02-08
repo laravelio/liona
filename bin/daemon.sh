@@ -2,7 +2,8 @@
 
 USER_HOME="/home/$USER"
 HUBOT_ROOT="$USER_HOME/liobot"
-HUBOT_HOME="$HUBOT_ROOT/node_modules/hubot"
+#HUBOT_HOME="$HUBOT_ROOT/node_modules/hubot"
+HUBOT_HOME="$HUBOT_ROOT"
 DAEMON="$HUBOT_HOME/bin/hubot"
 DAEMON_OPTS="-n Liona -a irc"
 PIDFILE=$HUBOT_ROOT/hubot.pid
