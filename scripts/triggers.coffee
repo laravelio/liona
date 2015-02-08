@@ -7,8 +7,10 @@
 # Notes:
 #   Add helpful triggers when you think of them!
 
-pasteUrl = "http://laravel.io/bin, https://gist.github.com, or http://kopy.io"
-helpUrl  = "http://help.laravel.io"
+whitelist = require '../support/whitelist'
+
+pasteUrl  = "http://laravel.io/bin, https://gist.github.com, or http://kopy.io"
+helpUrl   = "http://help.laravel.io"
 
 triggers =
   # Question Assistance
@@ -57,11 +59,18 @@ triggers["!#{nick}"]      = "Hello! The Laravel.io team created me to help you! 
 triggers["!whois#{nick}"] = triggers["!#{nick}"]
 
 module.exports = (robot) ->
-  robot.hear /(([^:\s!]+)[:\s]+)?(!\w+)(.*)/i, (msg) ->
+  robot.respond /learn trigger (\![a-zA-Z-_\&\^\!\#]+) (.*)/, (msg) ->
+    return unless whitelist.canAddTriggers(msg.message.user)
+    [name, phrase] = msg.match[1..2]
+
+    robot.brain.set "trigger:#{name}", phrase
+    msg.reply "Got it.  Learned '#{name}' as '#{phrase}'."
+
+  robot.hear /^(([^:\s!]+)[:\s]+)?(!\w+)(.*)/i, (msg) ->
     user          = msg.match[2]
     trigger       = msg.match[3]
     args          = msg.match[4]
-    triggerPhrase = triggers[trigger]
+    triggerPhrase = robot.brain.get("trigger:#{trigger}") || triggers[trigger]
 
     if triggerPhrase
       if user?
