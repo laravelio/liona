@@ -72,7 +72,7 @@ module.exports = (robot) ->
     return unless whitelist.canAddTriggers(robot, msg.message.user)
     name = msg.match[1]
 
-    robot.brain.remove "trigger:#{name}", phrase
+    robot.brain.remove "trigger:#{name}"
     msg.reply "Now I know nothing about '#{name}' unless it's hardcoded"
 
 
