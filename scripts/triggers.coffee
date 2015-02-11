@@ -36,7 +36,6 @@ triggers =
   '!nick'         : "Hello! You're currently using a nick that's difficult to distinguish. Please type in \"/nick your_name\" so we can easily identify you"
   '!welcome'      : "Hello, I'm #{process.env.HUBOT_IRC_NICK}, the Laravel IRC Bot!  Welcome to Laravel :).  If you have any questions, type !help to see how to best ask for assistance.  If you need to paste code, check !paste for more info.  Thanks!"
   '!wysiwyg'      : "What you see is what you get"
-  '!relsched'     : "Here is our release schedule: http://wiki.laravel.io/Laravel_4#Release_Schedule"
   '!massassign'   : "Getting a MassAssignmentException? Learn what it's all about at http://laravel.com/docs/4.2/eloquent#mass-assignment"
   '!contrib'      : "Want to contribute to Laravel? Thanks for being awesome! Fork and submit a pull request at http://github.com/laravel/framework."
   '!docscontrib'  : "Want to contribute to the documentation? Thanks for being awesome! Fork and submit a pull request at http://github.com/laravel/docs"
