@@ -29,6 +29,7 @@ triggers =
   '!rules'        : "You may review our room rules at http://goo.gl/Tl77U2"
   '!docs'         : "The !docs syntax is deprecated, please use `Liona show <user> docs for <topic>`"
   '!xy'           : "It's difficult to discuss a solution without first understanding the problem. Please, explain the problem itself and not the solution that you have in mind. For more info on presenting your problem see !help. Thanks! Also see http://mywiki.wooledge.org/XyProblem"
+  '!dump'         : "Getting 'class not found' errors? Try typing `composer dump` into the command prompt to have composer update its reference to your classes."
 
   # Helpers
   '!ugt'          : "It is always morning when someone comes into a channel. We call that Universal Greeting Time http://www.total-knowledge.com/~ilya/mips/ugt.html"
