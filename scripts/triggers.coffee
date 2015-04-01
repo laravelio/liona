@@ -17,7 +17,7 @@ triggers =
   '!paste'        : "You may paste your code at http://kopy.io"
   '!dontspam'     : "Please don't paste your code here. Instead, use http://kopy.io"
   '!pb'           : "Please avoid using pastebin.com as it is slow and forces others to look at ads. Please use http://kopy.io - Thanks!"
-  '!rules'        : "You may review our room rules at http://goo.gl/Tl77U2"
+  '!rules'        : "You may review our room rules at http://octobercms.com/help/support/chat-rules"
 
   # Helpers
   '!ugt'          : "It is always morning when someone comes into a channel. We call that Universal Greeting Time http://www.total-knowledge.com/~ilya/mips/ugt.html"
