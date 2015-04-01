@@ -38,7 +38,7 @@ module.exports = (robot) ->
         url = result.find('.st .f a').attr('href') ? result.find('h3.r a').attr('href')
         callback url if callback
 
-  robot.hear /(([^:,\s!]+)[:,\s]+)?!docs\s?(api|php)?\s?(.*)/i, (msg) ->
+  robot.hear /(([^:,\s!]+)[:,\s]+)?!docs\s(api|php)?\s?(.*)/i, (msg) ->
     user = msg.match[2]
     doctype = msg.match[3]
     query = msg.match[4]
