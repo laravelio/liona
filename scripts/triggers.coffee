@@ -1,5 +1,5 @@
 # Description:
-#   LioBot heeds the call of the last op
+#   Octobot heeds the call of the last op
 #
 # Commands:
 #   !<trigger> - Display response to intended user
@@ -12,8 +12,8 @@ triggers =
   '!dataja'       : "Don't ask to ask, Just ask!"
   '!tryit'        : "Try it and see™. You learn much more by experimentation than by asking without having even tried."
   '!explain'      : "Explain your business goals, such as what website feature you're making, instead of the technical problem you're facing. We can give you much better answers this way."
-  '!help'         : "Before asking for help, use http://kopy.io to provide us the information we need to help you - Laravel version, expected/actual behavior, and all relevant code. Paste the link here when done. Thanks!"
-  '!helpme'       : "Before asking for help, use http://kopy.io to provide us the information we need to help you - Laravel version, expected/actual behavior, and all relevant code. Paste the link here when done. Thanks!"
+  '!help'         : "Before asking for help, use http://kopy.io to provide us the information we need to help you - October build, expected/actual behavior, and all relevant code. Paste the link here when done. Thanks!"
+  '!helpme'       : "Before asking for help, use http://kopy.io to provide us the information we need to help you - October build, expected/actual behavior, and all relevant code. Paste the link here when done. Thanks!"
   '!paste'        : "You may paste your code at http://kopy.io"
   '!dontspam'     : "Please don't paste your code here. Instead, use http://kopy.io"
   '!pb'           : "Please avoid using pastebin.com as it is slow and forces others to look at ads. Please use http://kopy.io - Thanks!"
@@ -22,13 +22,11 @@ triggers =
   # Helpers
   '!ugt'          : "It is always morning when someone comes into a channel. We call that Universal Greeting Time http://www.total-knowledge.com/~ilya/mips/ugt.html"
   '!nick'         : "Hello! You're currently using a nick that's difficult to distinguish. Please type in \"/nick your_name\" so we can easily identify you"
-  '!wiki'         : "Check out our wiki at http://wiki.laravel.io!"
-  '!welcome'      : "Hello, I'm #{process.env.HUBOT_IRC_NICK}, the Laravel IRC Bot!  Welcome to Laravel :).  If you have any questions, type !help to see how to best ask for assistance.  If you need to paste code, check !paste for more info.  Thanks!"
+  '!welcome'      : "Hello, I'm #{process.env.HUBOT_IRC_NICK}, the OctoberCMS IRC Bot!  Welcome to October :).  If you have any questions, type !help to see how to best ask for assistance.  If you need to paste code, check !paste for more info.  Thanks!"
   '!wysiwyg'      : "What you see is what you get"
-  '!relsched'     : "Here is our release schedule: http://wiki.laravel.io/Laravel_4#Release_Schedule"
   '!massassign'   : "Getting a MassAssignmentException? Find out how to protect your input at: http://wiki.laravel.io/FAQ_(Laravel_4)#MassAssignmentException"
-  '!docscontrib'  : "Want to contribute to the documentation? Awesome! Fork and submit a pull request at http://github.com/laravel/docs"
-  '!whoisliobot'  : "Hello! The Laravel.io team created me to help you! You can find my code at https://github.com/laravelio/liobot"
+  '!docscontrib'  : "Want to contribute to the documentation? Awesome! Fork and submit a pull request at https://github.com/octobercms/docs"
+  '!whoisoctobot'  : "Hello! The October team created me to help you! You can find my code at https://github.com/daftspunk/Octobot"
 
   # Fun
   '!no'           : "NOOOOOOOOO! http://www.youtube.com/watch?v=umDr0mPuyQc"
