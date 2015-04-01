@@ -12,11 +12,11 @@ triggers =
   '!dataja'       : "Don't ask to ask, Just ask!"
   '!tryit'        : "Try it and see™. You learn much more by experimentation than by asking without having even tried."
   '!explain'      : "Explain your business goals, such as what website feature you're making, instead of the technical problem you're facing. We can give you much better answers this way."
-  '!help'         : "Before asking for help, use http://help.laravel.io to provide us the information we need to help you - Laravel version, expected/actual behavior, and all relevant code. Paste the link here when done. Thanks!"
-  '!helpme'       : "Before asking for help, use http://help.laravel.io to provide us the information we need to help you - Laravel version, expected/actual behavior, and all relevant code. Paste the link here when done. Thanks!"
-  '!paste'        : "You may paste your code at http://laravel.io/bin"
-  '!dontspam'     : "Please don't paste your code here. Instead, use http://laravel.io/bin"
-  '!pb'           : "Please avoid using pastebin.com as it is slow and forces others to look at ads.  Please use http://laravel.io/bin.  Thanks!"
+  '!help'         : "Before asking for help, use http://kopy.io to provide us the information we need to help you - Laravel version, expected/actual behavior, and all relevant code. Paste the link here when done. Thanks!"
+  '!helpme'       : "Before asking for help, use http://kopy.io to provide us the information we need to help you - Laravel version, expected/actual behavior, and all relevant code. Paste the link here when done. Thanks!"
+  '!paste'        : "You may paste your code at http://kopy.io"
+  '!dontspam'     : "Please don't paste your code here. Instead, use http://kopy.io"
+  '!pb'           : "Please avoid using pastebin.com as it is slow and forces others to look at ads. Please use http://kopy.io - Thanks!"
   '!rules'        : "You may review our room rules at http://goo.gl/Tl77U2"
 
   # Helpers
