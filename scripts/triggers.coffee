@@ -22,7 +22,7 @@ triggers =
   # Helpers
   '!ugt'          : "It is always morning when someone comes into a channel. We call that Universal Greeting Time http://www.total-knowledge.com/~ilya/mips/ugt.html"
   '!nick'         : "Hello! You're currently using a nick that's difficult to distinguish. Please type in \"/nick your_name\" so we can easily identify you"
-  '!welcome'      : "Hello, I'm #{process.env.HUBOT_IRC_NICK}, the OctoberCMS IRC Bot!  Welcome to October :).  If you have any questions, type !help to see how to best ask for assistance.  If you need to paste code, check !paste for more info.  Thanks!"
+  '!welcome'      : "Hello, I'm Octobot, the OctoberCMS IRC Bot!  Welcome to October :).  If you have any questions, type !help to see how to best ask for assistance.  If you need to paste code, check !paste for more info.  Thanks!"
   '!wysiwyg'      : "What you see is what you get"
   '!massassign'   : "Getting a MassAssignmentException? Find out how to protect your input at: http://wiki.laravel.io/FAQ_(Laravel_4)#MassAssignmentException"
   '!docscontrib'  : "Want to contribute to the documentation? Awesome! Fork and submit a pull request at https://github.com/octobercms/docs"
