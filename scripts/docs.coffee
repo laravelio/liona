@@ -45,7 +45,7 @@ module.exports = (robot) ->
       .query(q: query)
       .get() (err, res, body) ->
         $ = cheerio.load body
-        result = $('li.g').first()
+        result = $('#rso .g').first()
         # Jump To Link ? Main Link
         url = result.find('.st .f a').attr('href') ? result.find('h3.r a').attr('href')
         callback url if callback
