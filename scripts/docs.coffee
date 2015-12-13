@@ -29,6 +29,8 @@ module.exports = (robot) ->
         "site:laravel.com/api/#{version} #{query}"
       else
         "site:laravel.com/api/#{TARGET_VERSION} #{query}"
+    else if doctype == 'lumen'
+      "site:lumen.laravel.com/docs #{query}"
     else if doctype == 'php'
       "site:php.net/manual/en #{query}"
     else
@@ -47,7 +49,7 @@ module.exports = (robot) ->
         $ = cheerio.load body
         result = $('#rso .g').first()
         # Jump To Link ? Main Link
-        url = result.find('.st .f a').attr('href') ? result.find('h3.r a').attr('href')
+        url = result.find('.s span.f a').attr('href') ? result.find('h3.r a').attr('href')
         callback url if callback
 
   docFetcher = (msg) ->
@@ -67,5 +69,5 @@ module.exports = (robot) ->
       else
         msg.send response
 
-  robot.respond /show (?:([^\s!]+) )?docs for (?:(api|php) )?(?:([0-9.]+) )?(.+)/i, docFetcher
-  robot.hear /(?:([^:,\s!]+)[:,\s]+)?!docs (?: (api|php))?(?: ([0-9.]+))?(?:\s?(.+))/i, docFetcher
+  robot.respond /show (?:([^\s!]+) )?docs for (?:(api|php|lumen) )?(?:([0-9.]+) )?(.+)/i, docFetcher
+  robot.hear /(?:([^:,\s!]+)[:,\s]+)?!docs (?: (api|php|lumen))?(?: ([0-9.]+))?(?:\s?(.+))/i, docFetcher
