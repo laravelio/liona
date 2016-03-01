@@ -15,10 +15,8 @@ deploy = (msg, failMsg = 'Nope') ->
     msg.reply failMsg
 
 module.exports = (robot) ->
-  robot.respond /deploy ?([a-zA-Z-_\&\^\!\#]+)?/i, (msg) ->
+  robot.respond /deploy ?([a-zA-Z-_\&\^\/\-\!\#]+)?/i, (msg) ->
     deploy msg
 
   robot.respond /sudo deploy/i, (msg) ->
     deploy msg, "Nope.  Now make me a sandwich."
-
-
