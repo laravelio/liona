@@ -2,10 +2,11 @@
 #   LioBot gets you tip top information from the Laravel or PHP documentation
 #
 # Commands:
-#   <nick?> !docs <version?> <query> - Perform a Google search against Laravel or PHP
-#       docs for <query>, version can be a numeric version number, 'api' to
-#       search the api docs, 'php' to search the PHP docs, or blank for
-#       the latest Laravel docs pages.
+#   LioBot show <nick?> docs for <type?> <version?> <query> - Perform a
+#        Google search against Laravel or PHP docs for <query>,
+#        version can be a numeric version number, 'api' to search
+#        the api docs, 'php' to search the PHP docs, or blank for the
+#        latest Laravel docs pages.
 #
 # Notes:
 #   None
@@ -76,4 +77,3 @@ module.exports = (robot) ->
         msg.send response
 
   robot.respond /show (?:([^\s!]+) )?docs for (?:(api|php|lumen) )?(?:([0-9.]+) )?(.+)/i, docFetcher
-  robot.hear /(?:([^:,\s!]+)[:,\s]+)?!docs (?: (api|php|lumen))?(?: ([0-9.]+))?(?:\s?(.+))/i, docFetcher
