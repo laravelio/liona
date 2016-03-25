@@ -62,6 +62,6 @@ module.exports = (robot) ->
 
         if matches and matches[1]
           msg.send matches[1]
-  
+
   robot.respond /designer excuse(?: me)?/i, (msg) ->
     msg.send msg.random(designer_excuses)
