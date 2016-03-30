@@ -12,3 +12,4 @@ module.exports =
   canSay: canDeploy
   isAdmin: canDeploy
   canAddTriggers: canAddTriggers
+  isTeacher: canAddTriggers
