@@ -80,35 +80,27 @@ module.exports = (robot) ->
   greetings = new GreetingRepo
 
 
-  robot.respond /clear last greet/i, (msg) ->
+  respondClearLastGreet = (msg) ->
     userRepo.clearGreet userRepo.find userName msg
 
-
-  robot.respond /greeting(s)?/i, (msg) ->
+  respondGreetings = (msg) ->
     greeting = greetings.random msg
     user = userName msg
-
     msg.send buildGreeting greeting, user
 
-
-  robot.respond /greet (?:([^\s!]+))( in (.+))?/i, (msg) ->
-    name = msg.match[1]
-    lang = msg.match[3]
+  respondGreetUserInLanguage = (msg) ->
+    console.log msg.match
+    [name, lang] = msg.match[1..2]
     user = userRepo.findOrNew name
-
     greeting = greetings.findOrRandom msg, (lang? && lang || user.lang)
-
     msg.send buildGreeting greeting, name
 
-
-  robot.respond /greet me/i, (msg) ->
+  respondGreetMe = (msg) ->
     name = userName msg
     message = doUserGreet userRepo, greetings, name
-
     msg.send message if message
 
-
-  robot.respond /i speak (.+)/i, (msg) ->
+  respondISpeak = (msg) ->
     lang = msg.match[1]
     name = userName msg
     greeting = greetings.find lang
@@ -119,21 +111,16 @@ module.exports = (robot) ->
 
     msg.reply message || cantFindIt lang
 
-
-  robot.respond /forget me/i, (msg) ->
+  respondForgetMe = (msg) ->
     name = userName msg
     userRepo.remove name
 
-
-  robot.respond /forget my greeting/i, (msg) ->
+  respondForgetMyGreeting = (msg) ->
     user = userRepo.find userName msg
-
-    userRepo.clearLang user
-
+    userRepo.clearLang user if user
     msg.reply "I have already forgotten what we were talking about."
 
-
-  robot.respond /what is my greeting(\?)?/i, (msg) ->
+  respondWhatIsMyGreeting = (msg) ->
     [name, user] = userRepo.nameUser msg
 
     if user?.lang?
@@ -141,7 +128,7 @@ module.exports = (robot) ->
     else
       msg.reply "No greeting set."
 
-  robot.respond /what is my language(\?)?/i, (msg) ->
+  respondWhatIsMyLanguage = (msg) ->
     user = userRepo.find userName msg
 
     if user?.lang?
@@ -149,22 +136,42 @@ module.exports = (robot) ->
     else
       msg.reply "You have no language set."
 
-
-  robot.respond /show greeting for (.+)/i, (msg) ->
+  respondShowGreetingFor = (msg) ->
     lang = msg.match[1]
     name = userName msg
     greeting = greetings.find lang
 
     msg.send greeting && buildGreeting greeting, name || cantFindIt lang
 
-
-  robot.enter (msg) ->
+  userEnters = (msg) ->
     name = userName msg
 
     if name.indexOf('laravelnewbie') > -1
       message = "Good morning #{name}, welcome to #{roomName(msg)}.  Please type in \"/nick your_new_nick\" to change your name so we can distinguish you easily."
-      # cache something about this user being greeted
     else
       message = doUserGreet userRepo, greetings, name
 
     msg.send message if message
+
+
+  robot.respond /clear last greet/i, respondClearLastGreet
+
+  robot.respond /greeting(s)?/i, respondGreetings
+
+  robot.respond /greet ([^me|^\s!]+)(?: in (.+))?/i, respondGreetUserInLanguage
+
+  robot.respond /greet me/i, respondGreetMe
+
+  robot.respond /i speak (.+)/i, respondISpeak
+
+  robot.respond /forget me/i, respondForgetMe
+
+  robot.respond /forget my greeting/i, respondForgetMyGreeting
+
+  robot.respond /what is my greeting(\?)?/i, respondWhatIsMyGreeting
+
+  robot.respond /what is my language(\?)?/i, respondWhatIsMyLanguage
+
+  robot.respond /show greeting for (.+)/i, respondShowGreetingFor
+
+  robot.enter userEnters
