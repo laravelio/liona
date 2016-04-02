@@ -158,7 +158,8 @@ module.exports = (robot) ->
 
   robot.respond /greeting(s)?/i, respondGreetings
 
-  robot.respond /greet ([^me|^\s!]+)(?: in (.+))?/i, respondGreetUserInLanguage
+  robot.respond /greet ((?!me)\w+)(?: in (.+))?/i, respondGreetUserInLanguage
+  #robot.respond /greet ([^me|^\s!]+)(?: in (.+))?/i, respondGreetUserInLanguage
 
   robot.respond /greet me/i, respondGreetMe
 
