@@ -13,6 +13,10 @@ class UserRepository
   KEY = 'user-settings'
 
   constructor: (@brain) ->
+    @cache = []
+    @brain.on 'loaded', =>
+      braindata = brain.data._private[KEY]
+      @cache = braindata if braindata
 
   find: (user) ->
     @all().filter((u) -> u.name.toLowerCase() is user.toLowerCase())?[0]
@@ -20,9 +24,9 @@ class UserRepository
   save: (data, name) ->
     data = {name: name} if !data?
     data.updated_at = Date.now()
-    datas = @all(data.name)
-    datas.push data
-    @set datas
+    @cache = @all data.name
+    @cache.push data
+    @set @cache
     data
 
   findOrNew: (name) ->
@@ -35,9 +39,7 @@ class UserRepository
     @set @all name
 
   all: (without) ->
-    data = @brain.get(KEY) || []
-
-    without && (data.filter (u) -> u.name.toLowerCase() isnt without.toLowerCase()) || data
+    without && (@cache.filter (u) -> u.name.toLowerCase() isnt without.toLowerCase()) || @cache
 
   set: (data) ->
     @brain.set KEY, data

@@ -10,12 +10,14 @@
 #   hubot greeting(s)
 #   hubot greet {user}( in {langugage})
 #   hubot greet me
+#   hubot greetings (on|off)
 #
 #   hubot clear last greet
 #   hubot forget me
 
 UserRepo = require '../support/user_repository'
 GreetingRepo = require '../support/greetings'
+whiteList = require '../support/whitelist'
 
 CACHETIME = 1000 * 60 * 60
 
@@ -76,26 +78,29 @@ UserRepo::nameUser = (msg) ->
 # Da Exports
 
 module.exports = (robot) ->
-  userRepo = new UserRepo(robot.brain)
+  userRepo = new UserRepo robot.brain
   greetings = new GreetingRepo
 
+  allowGreetings = true
 
   respondClearLastGreet = (msg) ->
     userRepo.clearGreet userRepo.find userName msg
 
   respondGreetings = (msg) ->
+    return unless allowGreetings
     greeting = greetings.random msg
     user = userName msg
     msg.send buildGreeting greeting, user
 
   respondGreetUserInLanguage = (msg) ->
-    console.log msg.match
+    return unless allowGreetings
     [name, lang] = msg.match[1..2]
     user = userRepo.findOrNew name
     greeting = greetings.findOrRandom msg, (lang? && lang || user.lang)
     msg.send buildGreeting greeting, name
 
   respondGreetMe = (msg) ->
+    return unless allowGreetings
     name = userName msg
     message = doUserGreet userRepo, greetings, name
     msg.send message if message
@@ -104,11 +109,9 @@ module.exports = (robot) ->
     lang = msg.match[1]
     name = userName msg
     greeting = greetings.find lang
-
     if greeting
       userRepo.updateLang name, lang
       message = "You will now be greeted in #{greeting['lang']}."
-
     msg.reply message || cantFindIt lang
 
   respondForgetMe = (msg) ->
@@ -122,7 +125,6 @@ module.exports = (robot) ->
 
   respondWhatIsMyGreeting = (msg) ->
     [name, user] = userRepo.nameUser msg
-
     if user?.lang?
       msg.send buildGreeting greetings.find(user.lang), name
     else
@@ -130,20 +132,27 @@ module.exports = (robot) ->
 
   respondWhatIsMyLanguage = (msg) ->
     user = userRepo.find userName msg
-
     if user?.lang?
       msg.reply "Your set language is " + greetings.find(user.lang).lang + "."
     else
       msg.reply "You have no language set."
 
   respondShowGreetingFor = (msg) ->
+    return unless allowGreetings
     lang = msg.match[1]
     name = userName msg
     greeting = greetings.find lang
 
     msg.send greeting && buildGreeting greeting, name || cantFindIt lang
 
+  respondGreetingsOnOff = (msg) ->
+    if whiteList.isTeacher msg.robot, msg.message.user
+      state = msg.match[1]
+      allowGreetings = state.toLowerCase() == 'on'
+      msg.send "Greetings are now #{state}."
+
   userEnters = (msg) ->
+    return unless allowGreetings
     name = userName msg
 
     if name.indexOf('laravelnewbie') > -1
@@ -156,7 +165,7 @@ module.exports = (robot) ->
 
   robot.respond /clear last greet/i, respondClearLastGreet
 
-  robot.respond /greeting(s)?/i, respondGreetings
+  robot.respond /(?:greeting(?:s)?)$/i, respondGreetings
 
   robot.respond /greet ((?!me)\w+)(?: in (.+))?/i, respondGreetUserInLanguage
   #robot.respond /greet ([^me|^\s!]+)(?: in (.+))?/i, respondGreetUserInLanguage
@@ -174,5 +183,7 @@ module.exports = (robot) ->
   robot.respond /what is my language(\?)?/i, respondWhatIsMyLanguage
 
   robot.respond /show greeting for (.+)/i, respondShowGreetingFor
+
+  robot.respond /greetings (on|off)/i, respondGreetingsOnOff
 
   robot.enter userEnters
