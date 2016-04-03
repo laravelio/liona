@@ -150,6 +150,7 @@ greetings =
 "vulcan":         lang: "Vulcan",         greeting: "Dif-tor heh smusma"
 "romulan":        lang: "Romulan",        greeting: "Brhon mnekha"
 "ferengi":        lang: "Ferengi",        greeting: "Welcome to our home. Please place your thumbprint on the legal waivers and deposit your admission fee in the slot by the door. Remember, my house is my house,"
+"malkovich":      lang: "Malkovich",      greeting: "Malkovich Malkovich Malkovich"
 
 
 

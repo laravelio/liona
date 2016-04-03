@@ -2,15 +2,18 @@
 #   Language based greetings, and laravenewbie nick change welcome message
 #
 # Commands:
-#   hubot show greeting for {language}
-#   hubot I speak {language}
+#   hubot show greeting for <language>
+#   hubot I speak <language>
 #   hubot forget my greeting
 #   hubot what is my greeting
 #   hubot what is my language
 #   hubot greeting(s)
-#   hubot greet {user}( in {langugage})
+#   hubot greet <user>( in <langugage>)
 #   hubot greet me
-#   hubot greetings (on|off)
+#   hubot greetings <on|off>
+#   hubot show user greeting for <user>
+#   hubot set greeting for <user> to <lang>
+#   hubot unset greeting for <user>
 #
 #   hubot clear last greet
 #   hubot forget me
@@ -145,6 +148,25 @@ module.exports = (robot) ->
 
     msg.send greeting && buildGreeting greeting, name || cantFindIt lang
 
+  respondShowGreetingForUser = (msg) ->
+    if whiteList.isTeacher msg.robot, msg.message.user
+      username = msg.match[1]
+      otheruser = userRepo.find username
+      if otheruser?.lang?
+        msg.reply "#{username}'s language is #{greetings.find(otheruser.lang).lang}."
+
+  respondSetUserGreetingTo = (msg) ->
+    if whiteList.isAdmin msg.robot, msg.message.user
+      [username, lang] = msg.match[1..2]
+      userRepo.updateLang username, lang
+      msg.reply "#{username}'s language is now #{greetings.find(lang).lang}"
+
+  respondUnsetUserGreeting = (msg) ->
+    if whiteList.isAdmin msg.robot, msg.message.user
+      username = msg.match[1]
+      userRepo.clearLang username
+      msg.reply "#{username}'s language has been unset."
+
   respondGreetingsOnOff = (msg) ->
     if whiteList.isTeacher msg.robot, msg.message.user
       state = msg.match[1]
@@ -183,6 +205,12 @@ module.exports = (robot) ->
   robot.respond /what is my language(\?)?/i, respondWhatIsMyLanguage
 
   robot.respond /show greeting for (.+)/i, respondShowGreetingFor
+
+  robot.respond /show user greeting for (.+)/i, respondShowGreetingForUser
+
+  robot.respond /set greeting for (\w+) to (.+)/i, respondSetUserGreetingTo
+
+  robot.respond /unset greeting for (.+)/i, respondUnsetUserGreeting
 
   robot.respond /greetings (on|off)/i, respondGreetingsOnOff
 
