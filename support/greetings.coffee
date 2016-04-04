@@ -150,11 +150,15 @@ greetings = [
     [ "Vulcan",         "Dif-tor heh smusma" ]
     [ "Romulan",        "Brhon mnekha" ]
     [ "Ferengi",        "Welcome to our home. Please place your thumbprint on the legal waivers and deposit your admission fee in the slot by the door. Remember, my house is my house," ]
-    [ "Malkovich",      "Malkovich Malkovich Malkovich" ]
+    [ "Malkovich",      "Malkovich Malkovich Malkovich," ]
     [ "Frozen",         "Let it go," ]
     [ "Doc",            "Great Scott," ]
     [ "Captain Jack",   "http://33.media.tumblr.com/d27594fa4e9788bd23c98e1617737527/tumblr_n70xx6I4ZA1s9qnu2o2_500.gif" ]
-    [ "Pintel",         "Hello poppet" ]
+    [ "Pintel",         "Hello Poppet," ]
+    [ "Buzz",           "To infinity and beyond," ]
+    [ "Thundercats",    "Thundercats Ho," ]
+    [ "Anchorman",      "Newsteam assemble," ]
+    [ "Wonka",          "Good morning starshine, the earth says hello," ]
 ]
 
 class GreetingsRepository
