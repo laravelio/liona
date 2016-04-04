@@ -40,7 +40,7 @@ doUserGreet = (users, greetings, name) ->
       return
 
     users.greeted user
-    return buildGreeting greetings.find(user.lang), (name || user.name)
+    buildGreeting greetings.find(user.lang), (name || user.name)
 
 # helpy helpers
 userName = (msg) ->
@@ -173,12 +173,15 @@ module.exports = (robot) ->
       allowGreetings = state.toLowerCase() == 'on'
       msg.send "Greetings are now #{state}."
 
+  respondGreetingsStatus = (msg) ->
+    msg.send "Greetings are currently #{allowGreetings && 'on' || 'off'}."
+
   userEnters = (msg) ->
     return unless allowGreetings
     name = userName msg
 
     if name.indexOf('laravelnewbie') > -1
-      message = "Good morning #{name}, welcome to #{roomName(msg)}.  Please type in \"/nick your_new_nick\" to change your name so we can distinguish you easily."
+      message = "Good morning #{name}, welcome to #{roomName(msg)}. Please type in \"/nick your_new_nick\" to change your name so we can distinguish you easily."
     else
       message = doUserGreet userRepo, greetings, name
 
@@ -190,7 +193,6 @@ module.exports = (robot) ->
   robot.respond /(?:greeting(?:s)?)$/i, respondGreetings
 
   robot.respond /greet ((?!me)\w+)(?: in (.+))?/i, respondGreetUserInLanguage
-  #robot.respond /greet ([^me|^\s!]+)(?: in (.+))?/i, respondGreetUserInLanguage
 
   robot.respond /greet me/i, respondGreetMe
 
@@ -212,6 +214,8 @@ module.exports = (robot) ->
 
   robot.respond /unset greeting for (.+)/i, respondUnsetUserGreeting
 
-  robot.respond /greetings (on|off)/i, respondGreetingsOnOff
+  robot.respond /greetings (on|off)$/i, respondGreetingsOnOff
+
+  robot.respond /greetings status$/i, respondGreetingsStatus
 
   robot.enter userEnters

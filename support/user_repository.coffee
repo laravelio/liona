@@ -4,7 +4,7 @@
 #   name: 'liona',
 #   created_at: ...,
 #   updated_at: ...,
-#   lang: Flanders,
+#   lang: 'Flanders',
 #   last_greeted_at: ...
 # }
 #
