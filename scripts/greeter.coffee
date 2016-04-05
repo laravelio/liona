@@ -14,6 +14,8 @@
 #   hubot show user greeting for <user>
 #   hubot set greeting for <user> to <lang>
 #   hubot unset greeting for <user>
+#   hubot show throttle time
+#   hubot set throttle to <seconds>
 #
 #   hubot clear last greet
 #   hubot forget me
@@ -23,7 +25,8 @@ GreetingRepo = require '../support/greetings'
 whiteList = require '../support/whitelist'
 
 CACHETIME = 1000 * 60 * 60
-
+THROTTLETIME = 2
+LIMITS = {}
 
 # greetings helpers
 buildGreeting = (obj, user) ->
@@ -49,6 +52,10 @@ userName = (msg) ->
 roomName = (msg) ->
   msg.message.room
 
+throttle = (name) ->
+  return true if LIMITS[name]? and LIMITS[name] > Date.now() - (THROTTLETIME * 1000)
+  LIMITS[name] = Date.now()
+  false
 
 # add some sh...tuff to the UserRepo
 UserRepo::greeted = (user) ->
@@ -77,7 +84,6 @@ UserRepo::nameUser = (msg) ->
   name = userName msg
   [name, @find name]
 
-
 # Da Exports
 
 module.exports = (robot) ->
@@ -86,7 +92,7 @@ module.exports = (robot) ->
 
   allowGreetings = true
 
-  respondClearLastGreet = (msg) ->
+  clearLastGreet = (msg) ->
     userRepo.clearGreet userRepo.find userName msg
 
   respondGreetings = (msg) ->
@@ -95,20 +101,20 @@ module.exports = (robot) ->
     user = userName msg
     msg.send buildGreeting greeting, user
 
-  respondGreetUserInLanguage = (msg) ->
+  greetUserInLanguage = (msg) ->
     return unless allowGreetings
     [name, lang] = msg.match[1..2]
     user = userRepo.findOrNew name
     greeting = greetings.findOrRandom msg, (lang? && lang || user.lang)
     msg.send buildGreeting greeting, name
 
-  respondGreetMe = (msg) ->
+  greetMe = (msg) ->
     return unless allowGreetings
     name = userName msg
     message = doUserGreet userRepo, greetings, name
     msg.send message if message
 
-  respondISpeak = (msg) ->
+  iSpeak = (msg) ->
     lang = msg.match[1]
     name = userName msg
     greeting = greetings.find lang
@@ -117,67 +123,76 @@ module.exports = (robot) ->
       message = "You will now be greeted in #{greeting['lang']}."
     msg.reply message || cantFindIt lang
 
-  respondForgetMe = (msg) ->
+  forgetMe = (msg) ->
     name = userName msg
     userRepo.remove name
 
-  respondForgetMyGreeting = (msg) ->
+  forgetMyGreeting = (msg) ->
     user = userRepo.find userName msg
     userRepo.clearLang user if user
     msg.reply "I have already forgotten what we were talking about."
 
-  respondWhatIsMyGreeting = (msg) ->
+  whatIsMyGreeting = (msg) ->
     [name, user] = userRepo.nameUser msg
     if user?.lang?
       msg.send buildGreeting greetings.find(user.lang), name
     else
       msg.reply "No greeting set."
 
-  respondWhatIsMyLanguage = (msg) ->
+  whatIsMyLanguage = (msg) ->
     user = userRepo.find userName msg
     if user?.lang?
       msg.reply "Your set language is " + greetings.find(user.lang).lang + "."
     else
       msg.reply "You have no language set."
 
-  respondShowGreetingFor = (msg) ->
+  showGreetingFor = (msg) ->
     return unless allowGreetings
     lang = msg.match[1]
     name = userName msg
     greeting = greetings.find lang
-
     msg.send greeting && buildGreeting greeting, name || cantFindIt lang
 
-  respondShowGreetingForUser = (msg) ->
+  showGreetingForUser = (msg) ->
     if whiteList.isTeacher msg.robot, msg.message.user
       username = msg.match[1]
       otheruser = userRepo.find username
       if otheruser?.lang?
         msg.reply "#{username}'s language is #{greetings.find(otheruser.lang).lang}."
 
-  respondSetUserGreetingTo = (msg) ->
+  setUserGreetingTo = (msg) ->
     if whiteList.isAdmin msg.robot, msg.message.user
       [username, lang] = msg.match[1..2]
       userRepo.updateLang username, lang
       msg.reply "#{username}'s language is now #{greetings.find(lang).lang}"
 
-  respondUnsetUserGreeting = (msg) ->
+  unsetUserGreeting = (msg) ->
     if whiteList.isAdmin msg.robot, msg.message.user
       username = msg.match[1]
       userRepo.clearLang username
       msg.reply "#{username}'s language has been unset."
 
-  respondGreetingsOnOff = (msg) ->
+  greetingsOnOff = (msg) ->
     if whiteList.isTeacher msg.robot, msg.message.user
       state = msg.match[1]
       allowGreetings = state.toLowerCase() == 'on'
       msg.send "Greetings are now #{state}."
 
-  respondGreetingsStatus = (msg) ->
+  greetingsStatus = (msg) ->
     msg.send "Greetings are currently #{allowGreetings && 'on' || 'off'}."
 
+  showThrottle = (msg) ->
+    return unless whiteList.isTeacher msg.robot, msg.message.user
+    msg.send "Throttle time is set to #{THROTTLETIME} seconds."
+
+  adjustThrottle = (msg) ->
+    return unless whiteList.isTeacher msg.robot, msg.message.user
+    seconds = msg.match[1]
+    THROTTLETIME = seconds
+    msg.send "Throttle time adjusted to #{seconds} seconds."
+
   userEnters = (msg) ->
-    return unless allowGreetings
+    return if !allowGreetings or throttle 'userenters'
     name = userName msg
 
     if name.indexOf('laravelnewbie') > -1
@@ -188,34 +203,38 @@ module.exports = (robot) ->
     msg.send message if message
 
 
-  robot.respond /clear last greet/i, respondClearLastGreet
+  robot.respond /clear last greet/i, clearLastGreet
 
   robot.respond /(?:greeting(?:s)?)$/i, respondGreetings
 
-  robot.respond /greet ((?!me)\w+)(?: in (.+))?/i, respondGreetUserInLanguage
+  robot.respond /greet ((?!me)\w+)(?: in (.+))?/i, greetUserInLanguage
 
-  robot.respond /greet me/i, respondGreetMe
+  robot.respond /greet me/i, greetMe
 
-  robot.respond /i speak (.+)/i, respondISpeak
+  robot.respond /i speak (.+)/i, iSpeak
 
-  robot.respond /forget me/i, respondForgetMe
+  robot.respond /forget me/i, forgetMe
 
-  robot.respond /forget my greeting/i, respondForgetMyGreeting
+  robot.respond /forget my greeting/i, forgetMyGreeting
 
-  robot.respond /what is my greeting(\?)?/i, respondWhatIsMyGreeting
+  robot.respond /what is my greeting(\?)?/i, whatIsMyGreeting
 
-  robot.respond /what is my language(\?)?/i, respondWhatIsMyLanguage
+  robot.respond /what is my language(\?)?/i, whatIsMyLanguage
 
-  robot.respond /show greeting for (.+)/i, respondShowGreetingFor
+  robot.respond /show greeting for (.+)/i, showGreetingFor
 
-  robot.respond /show user greeting for (.+)/i, respondShowGreetingForUser
+  robot.respond /show user greeting for (.+)/i, showGreetingForUser
 
-  robot.respond /set greeting for (\w+) to (.+)/i, respondSetUserGreetingTo
+  robot.respond /set greeting for (\w+) to (.+)/i, setUserGreetingTo
 
-  robot.respond /unset greeting for (.+)/i, respondUnsetUserGreeting
+  robot.respond /unset greeting for (.+)/i, unsetUserGreeting
 
-  robot.respond /greetings (on|off)$/i, respondGreetingsOnOff
+  robot.respond /greetings (on|off)$/i, greetingsOnOff
 
-  robot.respond /greetings status$/i, respondGreetingsStatus
+  robot.respond /greetings status$/i, greetingsStatus
+
+  robot.respond /show throttle time/i, showThrottle
+
+  robot.respond /set throttle to ([0-9.]+)$/i, adjustThrottle
 
   robot.enter userEnters
