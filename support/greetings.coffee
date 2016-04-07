@@ -77,6 +77,7 @@ greetings = [
     [ "Kurdish Badini", "Spede bash" ]
     [ "Kurdish Sorani", "Beyani bash" ]
     [ "Lao",            "Sabaidee" ]
+    [ "Latin",          "Bonum mane" ]
     [ "Latvian",        "Labrit" ]
     [ "Lithuanian",     "Labas rytas" ]
     [ "Lozi",           "U zuhile" ]
@@ -150,6 +151,7 @@ greetings = [
     [ "Vulcan",         "Dif-tor heh smusma" ]
     [ "Romulan",        "Brhon mnekha" ]
     [ "Ferengi",        "Welcome to our home. Please place your thumbprint on the legal waivers and deposit your admission fee in the slot by the door. Remember, my house is my house," ]
+    [ "Bajoran",        "Soraya neryshu" ]
     [ "Malkovich",      "Malkovich Malkovich Malkovich," ]
     [ "Frozen",         "Let it go," ]
     [ "Doc",            "Great Scott," ]
@@ -159,6 +161,10 @@ greetings = [
     [ "Thundercats",    "Thundercats Ho," ]
     [ "Anchorman",      "Newsteam assemble," ]
     [ "Wonka",          "Good morning starshine, the earth says hello," ]
+    [ "Pink Floyd",     "Hello, is there anybody in there? Just nod if you can hear me. Is there anyone at home?" ]
+    [ "Lionel Richie",  "Hello! Is it me you're looking for?" ]
+    [ "Beatles",        "Good morning, good morning. Good morning ah" ]
+    [ "Megamind",       "Ollo?" ]
 ]
 
 class GreetingsRepository
