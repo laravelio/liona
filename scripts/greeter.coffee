@@ -207,7 +207,7 @@ module.exports = (robot) ->
 
   robot.respond /(?:greeting(?:s)?)$/i, respondGreetings
 
-  robot.respond /greet ((?!me)\w+)(?: in (.+))?/i, greetUserInLanguage
+  robot.respond /greet ((?!me)[^@!\ ]*)(?: in (.+))?/i, greetUserInLanguage
 
   robot.respond /greet me/i, greetMe
 
@@ -225,7 +225,7 @@ module.exports = (robot) ->
 
   robot.respond /show user greeting for (.+)/i, showGreetingForUser
 
-  robot.respond /set greeting for (\w+) to (.+)/i, setUserGreetingTo
+  robot.respond /set greeting for ([^@!\ ]*) to (.+)/i, setUserGreetingTo
 
   robot.respond /unset greeting for (.+)/i, unsetUserGreeting
 
