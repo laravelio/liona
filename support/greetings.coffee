@@ -159,7 +159,7 @@ greetings = [
     [ "Pintel",         "Hello Poppet," ]
     [ "Buzz",           "To infinity and beyond," ]
     [ "Thundercats",    "Thundercats Ho," ]
-    [ "Anchorman",      "Newsteam assemble," ]
+    [ "Anchorman",      "News team assemble!" ]
     [ "Wonka",          "Good morning starshine, the earth says hello," ]
     [ "Pink Floyd",     "Hello, is there anybody in there? Just nod if you can hear me. Is there anyone at home?" ]
     [ "Lionel Richie",  "Hello! Is it me you're looking for?" ]
