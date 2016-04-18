@@ -4,7 +4,7 @@ greetings = [
     [ "Afrikaans",      "Goeie môre" ]
     [ "Albanian",       "Mirëmëngjes" ]
     [ "Amharic",        "Endermen aderkh" ]
-    [ "Arabic",         "Sabah-il-kheir" ]
+    [ "Arabic",         "السلام عليكم" ]
     [ "Aramaic",        "Yasetel liesbukh" ]
     [ "Armenian",       "Bari luys" ]
     [ "Assyrian",       "Kedamtookh brikhta" ]
