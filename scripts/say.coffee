@@ -12,4 +12,4 @@ module.exports = (robot) ->
       [room, message] = msg.match[1..2]
       robot.messageRoom room, message
     else
-      msg.reply "Denied because you #{msg.message.user.name} are not of list #{whitelistedUsers}"
+      msg.reply "Denied because you #{msg.message.user.name} are not in the access list."
