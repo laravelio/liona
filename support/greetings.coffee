@@ -4,7 +4,7 @@ greetings = [
     [ "Afrikaans",      "Goeie môre" ]
     [ "Albanian",       "Mirëmëngjes" ]
     [ "Amharic",        "Endermen aderkh" ]
-    [ "Arabic",         "Sabah-il-kheir" ]
+    [ "Arabic",         "السلام عليكم" ]
     [ "Aramaic",        "Yasetel liesbukh" ]
     [ "Armenian",       "Bari luys" ]
     [ "Assyrian",       "Kedamtookh brikhta" ]
@@ -166,6 +166,7 @@ greetings = [
     [ "Beatles",        "Good morning, good morning. Good morning ah" ]
     [ "Megamind",       "Ollo?" ]
     [ "Rickroll",       "Never gonna give you up, Never gonna let you down, Never gonna run around and desert you, Never gonna make you cry, Never gonna say goodbye, Never gonna tell a lie and hurt you." ]
+    [ "Terrorist"       "Allahu Akbar!"]
 ]
 
 class GreetingsRepository
