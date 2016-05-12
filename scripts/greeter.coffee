@@ -129,7 +129,7 @@ module.exports = (robot) ->
 
   forgetMyGreeting = (msg) ->
     user = userRepo.find userName msg
-    userRepo.clearLang user if user
+    userRepo.clearLang user.name if user
     msg.reply "I have already forgotten what we were talking about."
 
   whatIsMyGreeting = (msg) ->
