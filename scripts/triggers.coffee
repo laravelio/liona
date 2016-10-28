@@ -20,7 +20,16 @@ module.exports = (robot) ->
     formatter = (list) -> list.map((t) -> t.name).join(', ') || 'None'
     message = "Available triggers: "
 
-    msg.reply message + formatter(triggers)
+    user = msg.message.user.name
+
+    # make it a private message
+    if msg.message.room
+      msg.message.room = user
+
+    if msg.message.user?.room
+      msg.message.user.room = user
+
+    msg.send message + formatter(triggers)
 
   robot.respond /learn trigger (\![a-zA-Z-_\&\^\!\#]+) (.*)/, (msg) ->
     return unless whitelist.canAddTriggers(robot, msg.message.user)
