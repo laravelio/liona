@@ -7,7 +7,7 @@
 #   Liona forget trigger <trigger> - Forget a dynamic trigger
 #   Liona suggest trigger <trigger> <phrase> - Suggest a trigger
 #   Liona list suggested triggers - list the waiting suggestions
-#   Liona show trigger <id> - show the suggested trigger
+#   Liona show suggested trigger <id> - show the suggested trigger
 #   Liona forget suggested trigger <id> - remove a suggested trigger
 #   Liona learn suggested trigger <id> - add the suggested trigger to the triggers
 #
@@ -68,7 +68,7 @@ module.exports = (robot) ->
     formatter = (list) -> list.map((t) -> "#{t.id}: #{t.name}").join(', ') || 'None'
     msg.reply formatter(triggers)
 
-  robot.respond /show trigger ([a-zA-Z0-9]+)/, (msg) ->
+  robot.respond /show suggested trigger ([a-zA-Z0-9]+)/, (msg) ->
     return unless whitelist.canAddTriggers robot, msg.message.user
     id = msg.match[1]
     trigger = suggestRepo.find id
