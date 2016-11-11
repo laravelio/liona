@@ -8,7 +8,8 @@ class TriggerRepository
   # {
   #   name: "!foo",
   #   phrase: "Foo bar",
-  #   author: "foobar"
+  #   author: "foobar",
+  #   created_at: 12309....,
   # }
   constructor: (@brain) ->
 
@@ -16,7 +17,7 @@ class TriggerRepository
     @brainTrigger(trigger) || @hardcodedTrigger(trigger)
 
   save: (name, phrase, author = 'Liona') ->
-    trigger = name: name, phrase: phrase, author: author
+    trigger = name: name, phrase: phrase, author: author, created_at: Date.now()
     triggers = @brainTriggers().filter (t) -> t.name isnt name
     triggers.push trigger
 

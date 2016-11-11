@@ -45,6 +45,21 @@ module.exports = (robot) ->
     triggerRepo.save(name, phrase, msg.message.user.username)
     msg.reply "Got it.  Learned '#{name}' as '#{phrase}'."
 
+  robot.respond /show trigger (\![a-zA-Z-_\&\^\!\#]+)/, (msg) ->
+    return unless whitelist.canAddTriggers robot, msg.message.user
+    name = msg.match[1]
+
+    trigger = triggerRepo.find name
+
+    return unless trigger
+
+    if trigger.created_at?
+      date = new Date(trigger.created_at).toDateString()
+    else
+      date = '?'
+
+    msg.reply "#{trigger.name} \"#{trigger.phrase}\" [#{trigger.author}] #{date}"
+
   robot.respond /forget trigger (\![a-zA-Z-_\&\^\!\#]+)/, (msg) ->
     return unless whitelist.canAddTriggers(robot, msg.message.user)
     name = msg.match[1]
@@ -57,8 +72,8 @@ module.exports = (robot) ->
 
     user = msg.message.user.name
 
-    suggestRepo.create(name, phrase, user)
-    msg.reply "Thank you. It will be waiting for review."
+    trigger = suggestRepo.create(name, phrase, user)
+    msg.reply "Thank you. It will be waiting for review. (#{trigger.id})"
 
   robot.respond /list suggested triggers/, (msg) ->
     console.log whitelist.canAddTriggers robot, msg.message.user
