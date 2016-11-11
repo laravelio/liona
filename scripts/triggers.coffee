@@ -4,11 +4,12 @@
 # Commands:
 #   !<trigger> - Display response to intended user
 #   Liona learn trigger <trigger> <phrase> - Learn a dynamic trigger
+#   Liona show trigger <trigger> - View information about a trigger
 #   Liona forget trigger <trigger> - Forget a dynamic trigger
 #   Liona suggest trigger <trigger> <phrase> - Suggest a trigger
 #   Liona list suggested triggers - list the waiting suggestions
 #   Liona show suggested trigger <id> - show the suggested trigger
-#   Liona forget suggested trigger <id> - remove a suggested trigger
+#   Liona reject suggested trigger <id> - remove a suggested trigger
 #   Liona learn suggested trigger <id> - add the suggested trigger to the triggers
 #
 # Notes:
@@ -53,12 +54,16 @@ module.exports = (robot) ->
 
     return unless trigger
 
-    if trigger.created_at?
-      date = new Date(trigger.created_at).toDateString()
-    else
-      date = '?'
+    rmsg = "#{trigger.name} \"#{trigger.phrase}\" [#{trigger.author}]"
 
-    msg.reply "#{trigger.name} \"#{trigger.phrase}\" [#{trigger.author}] #{date}"
+    if trigger.suggested_by?
+      rmsg = "#{rmsg} {#{trigger.suggested_by}}"
+
+    if trigger.created_at?
+      rmsg = "#{rmsg} #{new Date(trigger.created_at).toDateString()}"
+
+
+    msg.reply rmsg
 
   robot.respond /forget trigger (\![a-zA-Z-_\&\^\!\#]+)/, (msg) ->
     return unless whitelist.canAddTriggers(robot, msg.message.user)
@@ -99,12 +104,12 @@ module.exports = (robot) ->
 
     return unless trigger?
 
-    triggerRepo.save trigger.name, trigger.phrase, msg.message.user.name
+    triggerRepo.save trigger.name, trigger.phrase, msg.message.user.name, trigger.author
     suggestRepo.remove id
 
     msg.reply "Got it.  Learned '#{trigger.name}' as '#{trigger.phrase}'."
 
-  robot.respond /forget suggested trigger ([a-zA-Z0-9]+)/, (msg) ->
+  robot.respond /reject suggested trigger ([a-zA-Z0-9]+)/, (msg) ->
     return unless whitelist.canAddTriggers robot, msg.message.user
     id = msg.match[1]
     suggestRepo.remove id

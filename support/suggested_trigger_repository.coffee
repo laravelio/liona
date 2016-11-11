@@ -1,5 +1,5 @@
 #
-# user structure
+# record structure
 # {
 #   id: 'x3jrja',
 #   name: '!foo',
@@ -22,15 +22,10 @@ class SuggestedTriggerRepository
     @all().filter((u) -> u.id.toLowerCase() is key.toLowerCase())?[0]
 
   save: (data) ->
-#    data = {} if !data?
-#    data.updated_at = Date.now()
     @cache = @all data.name
     @cache.push data
     @set @cache
     data
-
-  # findOrNew: (name) ->
-  #   @find(name) || @new(name)
 
   create: (name, phrase, user) ->
     @save @new name, phrase, user
