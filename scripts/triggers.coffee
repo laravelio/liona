@@ -23,7 +23,7 @@ module.exports = (robot) ->
   triggerRepo = new TriggerRepo(robot.brain)
   suggestRepo = new SuggestedRepo(robot.brain)
 
-  robot.respond /list triggers/, (msg) ->
+  robot.respond /list triggers/i, (msg) ->
     triggers = triggerRepo.all()
     formatter = (list) -> list.map((t) -> t.name).join(', ') || 'None'
     message = "Available triggers: "
@@ -39,14 +39,14 @@ module.exports = (robot) ->
 
     msg.send message + formatter(triggers)
 
-  robot.respond /learn trigger (\![a-zA-Z-_\&\^\!\#]+) (.*)/, (msg) ->
+  robot.respond /learn trigger (\![a-zA-Z-_\&\^\!\#]+) (.*)/i, (msg) ->
     return unless whitelist.canAddTriggers(robot, msg.message.user)
     [name, phrase] = msg.match[1..2]
 
     triggerRepo.save(name, phrase, msg.message.user.username)
     msg.reply "Got it.  Learned '#{name}' as '#{phrase}'."
 
-  robot.respond /show trigger (\![a-zA-Z-_\&\^\!\#]+)/, (msg) ->
+  robot.respond /show trigger (\![a-zA-Z-_\&\^\!\#]+)/i, (msg) ->
     return unless whitelist.canAddTriggers robot, msg.message.user
     name = msg.match[1]
 
@@ -62,17 +62,16 @@ module.exports = (robot) ->
     if trigger.created_at?
       rmsg = "#{rmsg} #{new Date(trigger.created_at).toDateString()}"
 
-
     msg.reply rmsg
 
-  robot.respond /forget trigger (\![a-zA-Z-_\&\^\!\#]+)/, (msg) ->
+  robot.respond /forget trigger (\![a-zA-Z-_\&\^\!\#]+)/i, (msg) ->
     return unless whitelist.canAddTriggers(robot, msg.message.user)
     name = msg.match[1]
 
     triggerRepo.remove name
     msg.reply "Now I know nothing about '#{name}' unless it's hardcoded"
 
-  robot.respond /suggest trigger (\![a-zA-Z-_\&\^\!\#]+) (.*)/, (msg) ->
+  robot.respond /suggest trigger (\![a-zA-Z-_\&\^\!\#]+) (.*)/i, (msg) ->
     [name, phrase] = msg.match[1..2]
 
     user = msg.message.user.name
@@ -80,7 +79,7 @@ module.exports = (robot) ->
     trigger = suggestRepo.create(name, phrase, user)
     msg.reply "Thank you. It will be waiting for review. (#{trigger.id})"
 
-  robot.respond /list suggested triggers/, (msg) ->
+  robot.respond /list suggested triggers/i, (msg) ->
     console.log whitelist.canAddTriggers robot, msg.message.user
     return unless whitelist.canAddTriggers(robot, msg.message.user)
     triggers = suggestRepo.all()
@@ -88,7 +87,7 @@ module.exports = (robot) ->
     formatter = (list) -> list.map((t) -> "#{t.id}: #{t.name}").join(', ') || 'None'
     msg.reply formatter(triggers)
 
-  robot.respond /show suggested trigger ([a-zA-Z0-9]+)/, (msg) ->
+  robot.respond /show suggested trigger ([a-zA-Z0-9]+)/i, (msg) ->
     return unless whitelist.canAddTriggers robot, msg.message.user
     id = msg.match[1]
     trigger = suggestRepo.find id
@@ -97,7 +96,7 @@ module.exports = (robot) ->
       date = new Date(trigger.created_at).toDateString()
       msg.reply "#{trigger.name} \"#{trigger.phrase}\" [#{trigger.author}] #{date} "
 
-  robot.respond /learn suggested trigger ([a-zA-Z0-9]+)/, (msg) ->
+  robot.respond /learn suggested trigger ([a-zA-Z0-9]+)/i, (msg) ->
     return unless whitelist.canAddTriggers robot, msg.message.user
     id = msg.match[1]
     trigger = suggestRepo.find id
@@ -109,7 +108,7 @@ module.exports = (robot) ->
 
     msg.reply "Got it.  Learned '#{trigger.name}' as '#{trigger.phrase}'."
 
-  robot.respond /reject suggested trigger ([a-zA-Z0-9]+)/, (msg) ->
+  robot.respond /reject suggested trigger ([a-zA-Z0-9]+)/i, (msg) ->
     return unless whitelist.canAddTriggers robot, msg.message.user
     id = msg.match[1]
     suggestRepo.remove id
