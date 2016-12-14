@@ -25,7 +25,7 @@ class SOPoller
     @poller    = new Poller(@robot.http(HOST_URL).query(
       site:   "stackoverflow"
       order:  "desc"
-      sort:   "activity"
+      sort:   "creation"
       tagged: "laravel"
       filter: "default"
     ), POLL_INTERVAL)
