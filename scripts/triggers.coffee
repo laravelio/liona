@@ -3,13 +3,14 @@
 #
 # Commands:
 #   !<trigger> - Display response to intended user
+#   Liona (list|show) triggers - Lists all triggers in private message
 #   Liona learn trigger <trigger> <phrase> - Learn a dynamic trigger
 #   Liona show trigger <trigger> - View information about a trigger
 #   Liona forget trigger <trigger> - Forget a dynamic trigger
 #   Liona suggest trigger <trigger> <phrase> - Suggest a trigger
-#   Liona list suggested triggers - list the waiting suggestions
+#   Liona (list|show) suggested triggers - list the waiting suggestions
 #   Liona show suggested trigger <id> - show the suggested trigger
-#   Liona reject suggested trigger <id> - remove a suggested trigger
+#   Liona (reject|forget) suggested trigger <id> - remove a suggested trigger
 #   Liona learn suggested trigger <id> - add the suggested trigger to the triggers
 #
 # Notes:
@@ -23,7 +24,7 @@ module.exports = (robot) ->
   triggerRepo = new TriggerRepo(robot.brain)
   suggestRepo = new SuggestedRepo(robot.brain)
 
-  robot.respond /list triggers/i, (msg) ->
+  robot.respond /(list|show) triggers/i, (msg) ->
     triggers = triggerRepo.all()
     formatter = (list) -> list.map((t) -> t.name).join(', ') || 'None'
     message = "Available triggers: "
@@ -43,13 +44,12 @@ module.exports = (robot) ->
     return unless whitelist.canAddTriggers(robot, msg.message.user)
     [name, phrase] = msg.match[1..2]
 
-    triggerRepo.save(name, phrase, msg.message.user.username)
+    triggerRepo.save(name, phrase, msg.message.user.name)
     msg.reply "Got it.  Learned '#{name}' as '#{phrase}'."
 
   robot.respond /show trigger (\![a-zA-Z-_\&\^\!\#]+)/i, (msg) ->
     return unless whitelist.canAddTriggers robot, msg.message.user
     name = msg.match[1]
-
     trigger = triggerRepo.find name
 
     return unless trigger
@@ -79,7 +79,7 @@ module.exports = (robot) ->
     trigger = suggestRepo.create(name, phrase, user)
     msg.reply "Thank you. It will be waiting for review. (#{trigger.id})"
 
-  robot.respond /list suggested triggers/i, (msg) ->
+  robot.respond /(list|show) suggested triggers/i, (msg) ->
     console.log whitelist.canAddTriggers robot, msg.message.user
     return unless whitelist.canAddTriggers(robot, msg.message.user)
     triggers = suggestRepo.all()
@@ -108,14 +108,14 @@ module.exports = (robot) ->
 
     msg.reply "Got it.  Learned '#{trigger.name}' as '#{trigger.phrase}'."
 
-  robot.respond /reject suggested trigger ([a-zA-Z0-9]+)/i, (msg) ->
+  robot.respond /(reject|forget) suggested trigger ([a-zA-Z0-9]+)/i, (msg) ->
     return unless whitelist.canAddTriggers robot, msg.message.user
     id = msg.match[1]
     suggestRepo.remove id
     msg.reply "Removed suggested trigger with id: #{id}."
 
 
-  robot.hear /^(([^:\s!]+)[:\s]+)?(!\w+)(.*)/i, (msg) ->
+  robot.hear /^(([^,:\s!]+)[,:\s]+)?(!\w+)(.*)/i, (msg) ->
     user    = msg.match[2]
     name    = msg.match[3]
     args    = msg.match[4]
