@@ -110,7 +110,7 @@ module.exports = (robot) ->
 
   robot.respond /(reject|forget) suggested trigger ([a-zA-Z0-9]+)/i, (msg) ->
     return unless whitelist.canAddTriggers robot, msg.message.user
-    id = msg.match[1]
+    id = msg.match[2]
     suggestRepo.remove id
     msg.reply "Removed suggested trigger with id: #{id}."
 
