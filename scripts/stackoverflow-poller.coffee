@@ -8,7 +8,7 @@
 Poller = require '../support/poller'
 
 PROD_MODE        = process.env.NODE_ENV is 'production'
-POLL_INTERVAL    = 1000 * 60 * 74
+POLL_INTERVAL    = 1000 * 60 * 180
 ANNOUNCE_ROOMS   = []
 
 do =>
