@@ -8,15 +8,19 @@ class TriggerRepository
   # {
   #   name: "!foo",
   #   phrase: "Foo bar",
-  #   author: "foobar"
+  #   author: "foobar",
+  #   created_at: 12309....,
+  #   suggested_by: 'barfoo'  // optional field
   # }
   constructor: (@brain) ->
 
   find: (trigger) ->
     @brainTrigger(trigger) || @hardcodedTrigger(trigger)
 
-  save: (name, phrase, author = 'Liona') ->
-    trigger = name: name, phrase: phrase, author: author
+  save: (name, phrase, author = 'Liona', suggested) ->
+    trigger = name: name, phrase: phrase, author: author, created_at: Date.now()
+    if suggested?
+      trigger.suggested_by = suggested
     triggers = @brainTriggers().filter (t) -> t.name isnt name
     triggers.push trigger
 
