@@ -41,7 +41,7 @@ triggers =
 # Bot Info
 nick = process.env.HUBOT_IRC_NICK?.toLowerCase() ? "hubot"
 
-triggers["!#{nick}"]      = "Hello! The Laravel.io team created me to help you! You can find my code at https://github.com/laravelio/liobot"
+triggers["!#{nick}"]      = "Hello! The Laravel.io team created me to help you! You can find my code at https://github.com/laravelio/liona"
 triggers["!whois#{nick}"] = triggers["!#{nick}"]
 
 module.exports = triggers
