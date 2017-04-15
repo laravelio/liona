@@ -166,6 +166,8 @@ greetings = [
     [ "Beatles",        "Good morning, good morning. Good morning ah" ]
     [ "Megamind",       "Ollo?" ]
     [ "Rickroll",       "Never gonna give you up, Never gonna let you down, Never gonna run around and desert you, Never gonna make you cry, Never gonna say goodbye, Never gonna tell a lie and hurt you." ]
+    [ "Wookie",         "raaaaaahhgh raaaaaahhgh aaaaahnr"]
+    [ "Taelon",         "Sinuai Euhura"]
 ]
 
 class GreetingsRepository
