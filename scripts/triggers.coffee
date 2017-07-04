@@ -40,14 +40,14 @@ module.exports = (robot) ->
 
     msg.send message + formatter(triggers)
 
-  robot.respond /learn trigger (\![a-zA-Z-_\&\^\!\#]+) (.*)/i, (msg) ->
+  robot.respond /learn trigger (\![a-zA-Z0-9-_\&\^\!\#]+) (.*)/i, (msg) ->
     return unless whitelist.canAddTriggers(robot, msg.message.user)
     [name, phrase] = msg.match[1..2]
 
     triggerRepo.save(name, phrase, msg.message.user.name)
     msg.reply "Got it.  Learned '#{name}' as '#{phrase}'."
 
-  robot.respond /show trigger (\![a-zA-Z-_\&\^\!\#]+)/i, (msg) ->
+  robot.respond /show trigger (\![a-zA-Z0-9-_\&\^\!\#]+)/i, (msg) ->
     return unless whitelist.canAddTriggers robot, msg.message.user
     name = msg.match[1]
     trigger = triggerRepo.find name
@@ -64,14 +64,14 @@ module.exports = (robot) ->
 
     msg.reply rmsg
 
-  robot.respond /forget trigger (\![a-zA-Z-_\&\^\!\#]+)/i, (msg) ->
+  robot.respond /forget trigger (\![a-zA-Z0-9-_\&\^\!\#]+)/i, (msg) ->
     return unless whitelist.canAddTriggers(robot, msg.message.user)
     name = msg.match[1]
 
     triggerRepo.remove name
     msg.reply "Now I know nothing about '#{name}' unless it's hardcoded"
 
-  robot.respond /suggest trigger (\![a-zA-Z-_\&\^\!\#]+) (.*)/i, (msg) ->
+  robot.respond /suggest trigger (\![a-zA-Z0-9-_\&\^\!\#]+) (.*)/i, (msg) ->
     [name, phrase] = msg.match[1..2]
 
     user = msg.message.user.name
