@@ -169,7 +169,7 @@ greetings = [
     [ "Wookiee",        "raaaaaahhgh raaaaaahhgh aaaaahnr" ]
     [ "Taelon",         "Sinuai Euhura" ]
     [ "Bart Simpson",   "Eat my shorts" ]
-    [ "Homer Simposon", "D'oh" ]
+    [ "Homer Simpson",  "D'oh" ]
     [ "Fonzie",         "Ayyy" ]
     [ "verax",          "yooooooooooooooooooooooooooooooooooooooooooooooo" ]
     [ "Protoss",        "You must construct additional pylons," ]
