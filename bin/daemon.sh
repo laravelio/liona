@@ -1,7 +1,7 @@
 #!/bin/sh
 
 USER_HOME="/home/$USER"
-HUBOT_ROOT="$USER_HOME/liobot"
+HUBOT_ROOT="$USER_HOME/liona"
 #HUBOT_HOME="$HUBOT_ROOT/node_modules/hubot"
 HUBOT_HOME="$HUBOT_ROOT"
 DAEMON="$HUBOT_HOME/bin/hubot"
