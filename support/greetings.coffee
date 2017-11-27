@@ -186,6 +186,7 @@ greetings = [
     [ "Spock",          "Live long and prosper" ]
     [ "Picard",         "Make it so" ]
     [ "Mork",           "Na-nu Na-nu" ]
+    [ "Otaku",          "Sniff my pantsu, " ]
 ]
 
 class GreetingsRepository
