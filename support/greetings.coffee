@@ -101,6 +101,7 @@ greetings = [
     [ "Owambo",         "Wa lalapo" ]
     [ "Pashto",         "Sahar de pa Khair" ]
     [ "Persian",        "Subbakhair" ]
+    [ "Pingu",          "Noot noot!" ]
     [ "Pirate",         "Avast, ye scurvy dog" ]
     [ "Polish",         "Witaj" ]
     [ "Polynesian",     "Ia ora na" ]
