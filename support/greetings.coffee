@@ -35,6 +35,7 @@ greetings = [
     [ "Divehi",         "Baajjaveri hedhuneh" ]
     [ "Dutch",          "Goedemorgen" ]
     [ "English",        "Good morning" ]
+    [ "Engrish",        "Tis the season to be jorry. Fa ra ra ra ra ra ra ra ra!" ]
     [ "Esperanto",      "Bonan matenon" ]
     [ "Estonian",       "Tere hommikust" ]
     [ "Etsakor",        "Naigbia" ]
