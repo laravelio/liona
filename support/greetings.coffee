@@ -17,7 +17,6 @@ greetings = [
     [ "Bengali",        "Shu-probhaat" ]
     [ "Bisaya",         "Maayong adlaw" ]
     [ "Binary",         "011001110110111101101111011001000010000001101101011011110111001001101110011010010110111001100111" ]
-    [ "Bitconnect",        "Wassa-wassa-wassa-wassa-wassa-wassa-wassa-wassuuuuup! BitConneeeeeeeeect!" ]
     [ "Bosnian",        "Dobro jutro" ]
     [ "Bulgarian",      "Dobro utro" ]
     [ "Cantonese",      "Zou san" ]
@@ -188,6 +187,7 @@ greetings = [
     [ "Picard",         "Make it so" ]
     [ "Mork",           "Na-nu Na-nu" ]
     [ "Otaku",          "Sniff my pantsu, " ]
+    [ "Bitconnect",     "Wassa-wassa-wassa-wassa-wassa-wassa-wassa-wassuuuuup! BitConneeeeeeeeect!" ]
 ]
 
 class GreetingsRepository
