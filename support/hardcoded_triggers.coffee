@@ -38,6 +38,9 @@ triggers =
   '!haha'         : "http://i.imgur.com/CVhoCwr.jpg"
   '!phrasing'     : "Phrasing! http://batdoc.files.wordpress.com/2012/03/archer-1-phrasing.jpg"
 
+  # Accurate
+  '!elitist'      : "[20:53:59]  <FatBoyXPC>    noreason: i might let you watch me struggle on making this test pass"
+
 # Bot Info
 nick = process.env.HUBOT_IRC_NICK?.toLowerCase() ? "hubot"
 
