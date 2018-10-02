@@ -36,7 +36,7 @@ triggers =
   '!goal'         : "GOOOOOOOOOOOOOOOOOOOOOOAAAAAAAAAAAAAAAAALLLLLLLLLL!!!!!!!"
   '!unstoppable'  : "I am unstoppable!!! http://i.imgur.com/ALHS4Za.png"
   '!haha'         : "http://i.imgur.com/CVhoCwr.jpg"
-  '!phrasing'     : "Phrasing! http://batdoc.files.wordpress.com/2012/03/archer-1-phrasing.jpg"
+  '!phrasing'     : "Phrasing! https://getyarn.io/yarn-clip/715503bc-923d-46c1-a89b-a5c0c48d7c7a"
 
 # Bot Info
 nick = process.env.HUBOT_IRC_NICK?.toLowerCase() ? "hubot"
