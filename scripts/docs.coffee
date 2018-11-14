@@ -55,7 +55,7 @@ module.exports = (robot) ->
         if SEARCH_ENGINE is 'google'
           result = $('#rso .g').first()
           # Jump To Link ? Main Link
-          url = result.find('.s span.f a').attr('href') ? result.find('h3.r a').attr('href')
+          url = result.find('.s span.f a').attr('href') ? result.find('div.r a').attr('href')
         else
           url = $('ol#b_results li.b_algo h2').find('a').attr('href')
 
