@@ -10,6 +10,7 @@ Poller = require '../support/poller'
 PROD_MODE        = process.env.NODE_ENV is 'production'
 POLL_INTERVAL    = 1000 * 60 * 180
 ANNOUNCE_ROOMS   = []
+ENABLED          = process.env.FORUM_POLL_ENABLED || false
 
 do =>
   rooms = process.env.FORUM_POLL_ANNOUNCE_ROOMS || process.env.HUBOT_IRC_ROOMS || ''
@@ -75,6 +76,8 @@ class ThreadPoster
       ANNOUNCE_ROOMS.forEach (room) => @robot.messageRoom room, messages.join("\r\n")
 
 module.exports = (robot) ->
+  return unless ENABLED
+
   poller = new SOPoller(robot)
 
   # Start polling
