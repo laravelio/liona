@@ -189,6 +189,8 @@ greetings = [
     [ "Mork",           "Na-nu Na-nu" ]
     [ "Otaku",          "Sniff my pantsu, " ]
     [ "Bitconnect",     "Wassa-wassa-wassa-wassa-wassa-wassa-wassa-wassuuuuup! BitConneeeeeeeeect!" ]
+    [ "Dude, where are you?", "im in ur base, killing ur d00ds"]
+    [ "Starwars",       "May the force be with you"]
 ]
 
 class GreetingsRepository
