@@ -190,6 +190,7 @@ greetings = [
     [ "Otaku",          "Sniff my pantsu, " ]
     [ "Bitconnect",     "Wassa-wassa-wassa-wassa-wassa-wassa-wassa-wassuuuuup! BitConneeeeeeeeect!" ]
     [ "Hulk Hogan",     "Whatcha gonna do brother, when Hulkamania runs WILD on you?" ]
+    [ "Office Space",   "Uh, I just wanted to make sure you knew that we did start at the, um, usual time this morning. Yeah, it isn't a half day or anything like that"]
 ]
 
 class GreetingsRepository
