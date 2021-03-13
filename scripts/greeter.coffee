@@ -24,7 +24,7 @@ UserRepo = require '../support/user_repository'
 GreetingRepo = require '../support/greetings'
 whiteList = require '../support/whitelist'
 
-CACHETIME = 1000 * 60 * 60
+CACHETIME = 1000 * 60 * 60 * 12
 THROTTLETIME = 2
 LIMITS = {}
 
