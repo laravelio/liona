@@ -26,8 +26,7 @@ VERSION_KEY = 'docs-search-version'
 TARGET_VERSION = 'master'
 SEARCH_ENGINE = 'bing'
 
-USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36'
-#Rommie=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17
+USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36'
 
 getSearchUrl = (key) ->
   SEARCH_URLS[key]
@@ -55,7 +54,7 @@ module.exports = (robot) ->
         if SEARCH_ENGINE is 'google'
           result = $('#rso .g').first()
           # Jump To Link ? Main Link
-          url = result.find('.s span.f a').attr('href') ? result.find('div.r a').attr('href')
+          url = result.find('a').attr('href')
         else
           url = $('ol#b_results li.b_algo h2').find('a').attr('href')
 
