@@ -1,4 +1,4 @@
-pasteUrl  = "http://laravel.io/bin, https://gist.github.com, or http://kopy.io"
+pasteUrl = "https://bpaste.net, https://paste.laravel.io or https://gist.github.com"
 
 triggers =
   # Question Assistance
